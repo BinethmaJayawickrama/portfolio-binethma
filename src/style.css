@@ -1,0 +1,1839 @@
+/* ==========================================================================
+   MULTI-UNIVERSE PORTFOLIO - DOCTOR STRANGE MYSTIC STYLESHEET
+   Engineer: Binethma Jayawickrama
+   ========================================================================== */
+
+:root {
+  --bg-void: #05040a;
+  --bg-surface: rgba(14, 12, 26, 0.78);
+  --bg-surface-elevated: rgba(24, 20, 44, 0.88);
+  --bg-card: rgba(20, 16, 38, 0.65);
+  --border-mystic: rgba(255, 145, 0, 0.28);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+
+  /* Doctor Strange Eldritch Magic */
+  --portal-orange: #ff7700;
+  --portal-gold: #ffbe0b;
+  --portal-amber: #fb5607;
+  --portal-spark: #fff4cc;
+  --portal-glow: rgba(255, 119, 0, 0.45);
+  --portal-glow-intense: rgba(255, 190, 11, 0.7);
+
+  /* Time Stone Emerald Magic */
+  --timestone-neon: #00ffaa;
+  --timestone-deep: #00b377;
+  --timestone-glow: rgba(0, 255, 170, 0.5);
+
+  /* Cosmic Multiverse Accents */
+  --cosmic-purple: #9d4edd;
+  --cosmic-cyan: #00f0ff;
+  --text-main: #f8f9fa;
+  --text-muted: #9ba1b0;
+  --text-dim: #646b7c;
+
+  /* Fonts */
+  --font-mystic: 'Cinzel', serif;
+  --font-tech: 'Space Grotesk', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+  --font-mono: 'Fira Code', monospace;
+
+  --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  background-color: var(--bg-void);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-main);
+  background-color: var(--bg-void);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Background Canvas Layers */
+#space-canvas,
+#cursor-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#cursor-canvas {
+  z-index: 9998;
+}
+
+/* Subtle Multiverse Nebula Overlay */
+.nebula-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('/assets/multiverse_nebula.jpg') center center / cover no-repeat;
+  opacity: 0.16;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: screen;
+}
+
+.content-container {
+  position: relative;
+  z-index: 10;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Typography Utilities */
+h1, h2, h3, .mystic-heading {
+  font-family: var(--font-mystic);
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
+.tech-subheading {
+  font-family: var(--font-tech);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mono-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+/* Glowing Text */
+.glow-gold {
+  color: var(--portal-gold);
+  text-shadow: 0 0 20px var(--portal-glow);
+}
+
+.glow-emerald {
+  color: var(--timestone-neon);
+  text-shadow: 0 0 20px var(--timestone-glow);
+}
+
+.gradient-eldritch {
+  background: linear-gradient(135deg, #fff3b0 0%, #ffbe0b 35%, #fb5607 75%, #ff006e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ==========================================================================
+   NAVIGATION HUD
+   ========================================================================== */
+.cosmic-nav {
+  position: fixed;
+  top: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 3rem);
+  max-width: 1200px;
+  z-index: 1000;
+  background: var(--bg-surface);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--border-mystic);
+  border-radius: 9999px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 119, 0, 0.12);
+  padding: 0.7rem 1.6rem;
+  transition: var(--transition-smooth);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--text-main);
+  font-family: var(--font-tech);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+}
+
+.nav-sling-ring {
+  width: 28px;
+  height: 28px;
+  border: 2px dashed var(--portal-gold);
+  border-radius: 50%;
+  animation: rotateClockwise 12s linear infinite;
+  box-shadow: 0 0 10px var(--portal-gold);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 1.4rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-family: var(--font-tech);
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: var(--transition-smooth);
+  position: relative;
+  padding: 0.3rem 0;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--portal-gold);
+  text-shadow: 0 0 8px var(--portal-glow);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--portal-gold), var(--portal-amber));
+  transition: var(--transition-smooth);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hud-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  border-radius: 9999px;
+  padding: 0.5rem 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-tech);
+  font-size: 0.82rem;
+  transition: var(--transition-smooth);
+}
+
+.hud-btn:hover {
+  border-color: var(--portal-gold);
+  color: var(--portal-gold);
+  box-shadow: 0 0 14px var(--portal-glow);
+  transform: translateY(-2px);
+}
+
+.nav-cta-btn {
+  background: linear-gradient(135deg, var(--portal-orange), var(--portal-amber));
+  border: 1px solid var(--portal-gold);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.5rem 1.1rem;
+  box-shadow: 0 0 16px var(--portal-glow);
+}
+
+.nav-cta-btn:hover {
+  box-shadow: 0 0 24px var(--portal-glow-intense);
+  color: #fff;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   HERO - THE MULTIVERSE NEXUS
+   ========================================================================== */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 7rem 0 4rem;
+  text-align: center;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 20;
+}
+
+.timeline-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 119, 0, 0.12);
+  border: 1px solid var(--portal-orange);
+  border-radius: 9999px;
+  padding: 0.4rem 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 15px rgba(255, 119, 0, 0.2);
+}
+
+.timeline-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--portal-gold);
+  box-shadow: 0 0 10px var(--portal-gold);
+  animation: pulseBeacon 2s infinite;
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 6vw, 4.8rem);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.05rem, 2.2vw, 1.4rem);
+  font-family: var(--font-tech);
+  color: var(--text-muted);
+  max-width: 800px;
+  margin-bottom: 2.2rem;
+  min-height: 2em;
+}
+
+.hero-subtitle .type-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background-color: var(--portal-gold);
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+}
+
+/* Doctor Strange Interactive Portal Centerpiece */
+.portal-container {
+  position: relative;
+  width: 380px;
+  height: 380px;
+  margin: 1.5rem 0 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#portal-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 5;
+}
+
+/* Inner Dimension Window */
+.portal-core {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 119, 0, 0.3);
+  z-index: 2;
+  transition: var(--transition-smooth);
+}
+
+.portal-core img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.15) brightness(0.9);
+  transition: transform 0.6s ease;
+}
+
+.portal-container:hover .portal-core img {
+  transform: scale(1.08) rotate(4deg);
+}
+
+/* Concentric Eldritch Rune Mandalas */
+.eldritch-mandala {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.mandala-outer {
+  width: 340px;
+  height: 340px;
+  border: 1px dashed var(--portal-gold);
+  animation: rotateClockwise 28s linear infinite;
+  box-shadow: 0 0 15px rgba(255, 190, 11, 0.2);
+}
+
+.mandala-inner {
+  width: 290px;
+  height: 290px;
+  border: 1px dotted var(--portal-amber);
+  animation: rotateCounterClockwise 22s linear infinite;
+}
+
+/* Hero Action Buttons */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin-bottom: 3rem;
+}
+
+.btn-portal-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 2rem;
+  background: linear-gradient(135deg, #ff7700, #fb5607);
+  border: 1px solid var(--portal-gold);
+  border-radius: 9999px;
+  color: #fff;
+  font-family: var(--font-tech);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  box-shadow: 0 0 25px var(--portal-glow);
+  transition: var(--transition-smooth);
+  cursor: pointer;
+}
+
+.btn-portal-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 0 35px var(--portal-glow-intense);
+}
+
+.btn-portal-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-mystic);
+  border-radius: 9999px;
+  color: var(--text-main);
+  font-family: var(--font-tech);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  backdrop-filter: blur(12px);
+  transition: var(--transition-smooth);
+  cursor: pointer;
+}
+
+.btn-portal-secondary:hover {
+  border-color: var(--portal-gold);
+  color: var(--portal-gold);
+  box-shadow: 0 0 20px var(--portal-glow);
+  transform: translateY(-3px);
+}
+
+/* Quick Telemetry Stats Bar */
+.telemetry-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 1rem 2rem;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.telemetry-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.telemetry-num {
+  font-family: var(--font-tech);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--portal-gold);
+}
+
+.telemetry-lbl {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   ABOUT - THE WEAVER OF REALITIES (THE CREATOR)
+   ========================================================================== */
+.section-padding {
+  padding: 6.5rem 0;
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: var(--portal-gold);
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1rem;
+}
+
+.section-desc {
+  color: var(--text-muted);
+  max-width: 650px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+/* Levitating Sorceress Avatar Showcase */
+.avatar-levitate-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-card-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  animation: levitate 5s ease-in-out infinite;
+}
+
+.avatar-halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 110%;
+  height: 110%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--portal-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.avatar-portrait-card {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-mystic);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 119, 0, 0.2);
+}
+
+.avatar-portrait-card img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  display: block;
+}
+
+.avatar-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem;
+  background: linear-gradient(0deg, rgba(5, 4, 10, 0.95) 0%, rgba(5, 4, 10, 0.6) 60%, transparent 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.avatar-badge-title {
+  font-family: var(--font-mystic);
+  font-size: 1.15rem;
+  color: var(--portal-gold);
+}
+
+.avatar-badge-role {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.interactive-whisper-btn {
+  background: rgba(255, 190, 11, 0.15);
+  border: 1px solid var(--portal-gold);
+  color: var(--portal-gold);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.interactive-whisper-btn:hover {
+  background: var(--portal-gold);
+  color: #000;
+  transform: scale(1.1);
+  box-shadow: 0 0 16px var(--portal-glow);
+}
+
+/* About Narrative Cards */
+.codex-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.codex-intro {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--text-main);
+}
+
+.codex-pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+}
+
+.pillar-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 1.4rem;
+  backdrop-filter: blur(12px);
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.pillar-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--portal-gold), var(--portal-orange));
+  opacity: 0;
+  transition: var(--transition-smooth);
+}
+
+.pillar-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-mystic);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 18px rgba(255, 119, 0, 0.15);
+}
+
+.pillar-card:hover::before {
+  opacity: 1;
+}
+
+.pillar-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: rgba(255, 119, 0, 0.12);
+  color: var(--portal-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.9rem;
+}
+
+.pillar-title {
+  font-family: var(--font-tech);
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+  color: var(--text-main);
+}
+
+.pillar-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Institutional Badges */
+.academic-crest {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 1rem 1.4rem;
+}
+
+.crest-icon {
+  color: var(--portal-gold);
+  flex-shrink: 0;
+}
+
+.crest-text h4 {
+  font-family: var(--font-tech);
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.crest-text p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   SKILLS - THE MYSTIC ARSENAL
+   ========================================================================== */
+.skills-container {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 2.5rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 24px;
+  padding: 2.5rem;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+.skills-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.skill-category-tab {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid transparent;
+  border-radius: 14px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  font-family: var(--font-tech);
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.skill-category-tab:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-main);
+  transform: translateX(4px);
+}
+
+.skill-category-tab.active {
+  background: rgba(255, 119, 0, 0.12);
+  border-color: var(--portal-orange);
+  color: var(--portal-gold);
+  box-shadow: 0 0 20px rgba(255, 119, 0, 0.2);
+}
+
+.tab-glyph {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+}
+
+.skills-display-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.skill-panel-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.panel-title {
+  font-size: 1.6rem;
+  color: var(--portal-gold);
+  margin-bottom: 0.4rem;
+}
+
+.panel-desc {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.skill-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skill-row-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-tech);
+  font-size: 0.95rem;
+}
+
+.skill-mastery {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--portal-gold);
+}
+
+.skill-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.skill-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--portal-orange), var(--portal-gold));
+  border-radius: 9999px;
+  box-shadow: 0 0 10px var(--portal-gold);
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   PROJECTS - MULTIVERSE DIMENSIONS
+   ========================================================================== */
+.dimension-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 3rem;
+}
+
+.filter-chip {
+  padding: 0.6rem 1.4rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  border-radius: 9999px;
+  color: var(--text-muted);
+  font-family: var(--font-tech);
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.filter-chip:hover {
+  color: var(--text-main);
+  border-color: var(--border-mystic);
+}
+
+.filter-chip.active {
+  background: linear-gradient(135deg, rgba(255, 119, 0, 0.25), rgba(255, 190, 11, 0.15));
+  border-color: var(--portal-gold);
+  color: var(--portal-gold);
+  box-shadow: 0 0 16px var(--portal-glow);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.dimension-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  overflow: hidden;
+  backdrop-filter: blur(14px);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition-smooth);
+  position: relative;
+}
+
+.dimension-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--portal-gold);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 119, 0, 0.25);
+}
+
+.card-media-wrapper {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: #000;
+}
+
+.card-media-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+}
+
+.dimension-card:hover .card-media-wrapper img {
+  transform: scale(1.08);
+}
+
+.card-dimension-tag {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(5, 4, 10, 0.85);
+  border: 1px solid var(--portal-gold);
+  color: var(--portal-gold);
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  backdrop-filter: blur(8px);
+}
+
+.card-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 119, 0, 0.85);
+  color: #fff;
+  padding: 0.3rem 0.7rem;
+  border-radius: 9999px;
+  font-family: var(--font-tech);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.card-body {
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-title {
+  font-size: 1.45rem;
+  color: var(--text-main);
+  margin-bottom: 0.3rem;
+  transition: color 0.3s ease;
+}
+
+.dimension-card:hover .card-title {
+  color: var(--portal-gold);
+}
+
+.card-subtitle {
+  font-family: var(--font-tech);
+  font-size: 0.85rem;
+  color: var(--portal-orange);
+  margin-bottom: 0.9rem;
+}
+
+.card-summary {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.4rem;
+  flex-grow: 1;
+}
+
+.tech-runes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1.5rem;
+}
+
+.tech-rune {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 0.25rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  transition: var(--transition-smooth);
+}
+
+.dimension-card:hover .tech-rune {
+  border-color: rgba(255, 190, 11, 0.3);
+  color: var(--text-main);
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1.2rem;
+}
+
+.inspect-portal-btn {
+  background: transparent;
+  border: 1px solid var(--portal-orange);
+  color: var(--portal-gold);
+  border-radius: 9999px;
+  padding: 0.5rem 1.1rem;
+  font-family: var(--font-tech);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: var(--transition-smooth);
+}
+
+.inspect-portal-btn:hover {
+  background: var(--portal-orange);
+  color: #fff;
+  box-shadow: 0 0 16px var(--portal-glow);
+}
+
+.card-links {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.card-icon-link {
+  color: var(--text-muted);
+  transition: var(--transition-smooth);
+  display: flex;
+  align-items: center;
+}
+
+.card-icon-link:hover {
+  color: var(--portal-gold);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   SACRED TIMELINE & THE TIME STONE
+   ========================================================================== */
+.timeline-section {
+  position: relative;
+  background: radial-gradient(circle at 50% 30%, rgba(0, 255, 170, 0.05) 0%, transparent 60%);
+}
+
+.timestone-dial-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3.5rem;
+}
+
+.timestone-seal-interactive {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.timestone-seal-interactive:hover {
+  transform: rotate(60deg) scale(1.05);
+}
+
+.timestone-seal-interactive img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 20px var(--timestone-glow));
+}
+
+.timeline-spine {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.timeline-spine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--timestone-neon), var(--portal-orange));
+  box-shadow: 0 0 12px var(--timestone-neon);
+}
+
+.timeline-node {
+  position: relative;
+  margin-bottom: 3.5rem;
+  display: flex;
+  align-items: flex-start;
+  width: 50%;
+}
+
+.timeline-node.left {
+  left: 0;
+  padding-right: 3rem;
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.timeline-node.right {
+  left: 50%;
+  padding-left: 3rem;
+  text-align: left;
+}
+
+.timeline-orb {
+  position: absolute;
+  top: 0.5rem;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--bg-void);
+  border: 3px solid var(--timestone-neon);
+  box-shadow: 0 0 16px var(--timestone-neon);
+  z-index: 10;
+}
+
+.timeline-node.left .timeline-orb {
+  right: -10px;
+}
+
+.timeline-node.right .timeline-orb {
+  left: -10px;
+}
+
+.timeline-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(0, 255, 170, 0.2);
+  border-radius: 18px;
+  padding: 1.6rem;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+  transition: var(--transition-smooth);
+}
+
+.timeline-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--timestone-neon);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 20px var(--timestone-glow);
+}
+
+.timeline-epoch {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--timestone-neon);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.timeline-heading {
+  font-size: 1.25rem;
+  color: var(--text-main);
+  margin-bottom: 0.3rem;
+}
+
+.timeline-inst {
+  font-family: var(--font-tech);
+  font-size: 0.85rem;
+  color: var(--portal-gold);
+  margin-bottom: 0.8rem;
+}
+
+.timeline-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.timeline-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.timeline-node.left .timeline-tags {
+  justify-content: flex-end;
+}
+
+.timeline-tag {
+  background: rgba(0, 255, 170, 0.08);
+  border: 1px solid rgba(0, 255, 170, 0.2);
+  color: var(--timestone-neon);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   CHRONICLES & LORE (BLOGS)
+   ========================================================================== */
+.lore-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 2rem;
+}
+
+.lore-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 2.2rem;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition-smooth);
+}
+
+.lore-card:hover {
+  border-color: var(--border-mystic);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 119, 0, 0.15);
+}
+
+.lore-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--portal-gold);
+  margin-bottom: 1rem;
+}
+
+.lore-title {
+  font-size: 1.35rem;
+  color: var(--text-main);
+  margin-bottom: 0.9rem;
+  line-height: 1.4;
+}
+
+.lore-excerpt {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 1.6rem;
+  flex-grow: 1;
+}
+
+.read-lore-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--portal-gold);
+  text-decoration: none;
+  font-family: var(--font-tech);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: var(--transition-smooth);
+}
+
+.read-lore-btn:hover {
+  color: #fff;
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   CONTACT - INTERDIMENSIONAL GATEWAY
+   ========================================================================== */
+.gateway-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 3.5rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-mystic);
+  border-radius: 28px;
+  padding: 3.5rem;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 119, 0, 0.15);
+}
+
+.gateway-info h3 {
+  font-size: 2rem;
+  color: var(--text-main);
+  margin-bottom: 0.8rem;
+}
+
+.gateway-info p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 2.2rem;
+}
+
+.coordinates-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  margin-bottom: 2.5rem;
+}
+
+.coord-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: var(--text-main);
+  transition: var(--transition-smooth);
+}
+
+.coord-item:hover {
+  color: var(--portal-gold);
+  transform: translateX(4px);
+}
+
+.coord-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 119, 0, 0.1);
+  border: 1px solid var(--border-mystic);
+  color: var(--portal-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coord-details span {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.coord-details strong {
+  font-family: var(--font-tech);
+  font-size: 0.95rem;
+}
+
+/* Contact Transmission Form */
+.gateway-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-family: var(--font-tech);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.form-input,
+.form-textarea {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 0.85rem 1.2rem;
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: var(--transition-smooth);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--portal-gold);
+  box-shadow: 0 0 16px var(--portal-glow);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.btn-transmit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--portal-orange), var(--portal-amber));
+  border: 1px solid var(--portal-gold);
+  border-radius: 12px;
+  color: #fff;
+  font-family: var(--font-tech);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 0 20px var(--portal-glow);
+  transition: var(--transition-smooth);
+}
+
+.btn-transmit:hover {
+  box-shadow: 0 0 30px var(--portal-glow-intense);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   FLOATING COMPANION AVATAR WIDGET (BOTTOM-RIGHT HUD)
+   ========================================================================== */
+.mystic-companion-widget {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9999;
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.companion-speech-bubble {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--portal-gold);
+  border-radius: 16px;
+  border-bottom-right-radius: 4px;
+  padding: 0.9rem 1.2rem;
+  max-width: 280px;
+  font-size: 0.85rem;
+  color: var(--text-main);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 16px var(--portal-glow);
+  backdrop-filter: blur(16px);
+  position: relative;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.companion-speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  right: 12px;
+  width: 10px;
+  height: 10px;
+  background: var(--bg-surface-elevated);
+  border-right: 1px solid var(--portal-gold);
+  border-bottom: 1px solid var(--portal-gold);
+  transform: rotate(45deg);
+}
+
+.companion-avatar-circle {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, var(--portal-gold), var(--portal-orange));
+  box-shadow: 0 0 24px var(--portal-glow);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: levitate 4s ease-in-out infinite;
+}
+
+.mystic-companion-widget:hover .companion-avatar-circle {
+  transform: scale(1.1);
+  box-shadow: 0 0 35px var(--portal-glow-intense);
+}
+
+.companion-avatar-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #000;
+}
+
+.companion-avatar-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.companion-spark-ring {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: calc(100% + 16px);
+  height: calc(100% + 16px);
+  border: 2px dashed var(--portal-gold);
+  border-radius: 50%;
+  animation: rotateClockwise 10s linear infinite;
+  pointer-events: none;
+}
+
+.ring-burst {
+  animation: burstSpin 0.8s ease-out;
+}
+
+/* Time stone state for companion */
+.mystic-companion-widget.timestone-mode .companion-avatar-circle {
+  background: linear-gradient(135deg, var(--timestone-neon), #00b377);
+  box-shadow: 0 0 24px var(--timestone-glow);
+}
+
+.mystic-companion-widget.timestone-mode .companion-spark-ring {
+  border-color: var(--timestone-neon);
+}
+
+.mystic-companion-widget.timestone-mode .companion-speech-bubble {
+  border-color: var(--timestone-neon);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 16px var(--timestone-glow);
+}
+
+/* ==========================================================================
+   MODAL - DIMENSIONAL INSPECTOR
+   ========================================================================== */
+.dimension-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 3, 8, 0.88);
+  backdrop-filter: blur(16px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.dimension-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.dimension-modal-dialog {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--portal-gold);
+  border-radius: 24px;
+  max-width: 780px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2.5rem;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8), 0 0 40px var(--portal-glow);
+  position: relative;
+  transform: scale(0.92);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dimension-modal-overlay.active .dimension-modal-dialog {
+  transform: scale(1);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.modal-close-btn:hover {
+  background: var(--portal-orange);
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+.modal-header-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--portal-gold);
+  margin-bottom: 0.5rem;
+}
+
+.modal-title {
+  font-size: 1.8rem;
+  margin-bottom: 0.4rem;
+}
+
+.modal-subtitle {
+  font-family: var(--font-tech);
+  color: var(--portal-orange);
+  margin-bottom: 1.5rem;
+}
+
+.modal-hero-img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 1.8rem;
+}
+
+.modal-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.modal-bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.modal-bullet-glyph {
+  color: var(--portal-gold);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* ==========================================================================
+   FOOTER - THE NEXUS ANCHOR
+   ========================================================================== */
+.multiverse-footer {
+  border-top: 1px solid var(--border-subtle);
+  background: rgba(5, 4, 10, 0.9);
+  padding: 3.5rem 0 2rem;
+  text-align: center;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.footer-quote {
+  font-family: var(--font-mystic);
+  font-size: 1.1rem;
+  color: var(--portal-spark);
+  font-style: italic;
+  max-width: 600px;
+}
+
+.footer-copy {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+/* ==========================================================================
+   KEYFRAME ANIMATIONS
+   ========================================================================== */
+@keyframes rotateClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotateCounterClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes levitate {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes pulseBeacon {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 0.4;
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes burstSpin {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.4); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* ==========================================================================
+   RESPONSIVE QUERIES
+   ========================================================================== */
+@media (max-width: 992px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .avatar-levitate-stage {
+    margin-bottom: 2rem;
+  }
+  .avatar-card-wrapper {
+    margin: 0 auto;
+  }
+  .skills-container {
+    grid-template-columns: 1fr;
+  }
+  .gateway-grid {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+  }
+  .timeline-spine::before {
+    left: 20px;
+  }
+  .timeline-node {
+    width: 100%;
+    left: 0 !important;
+    padding-left: 50px !important;
+    padding-right: 0 !important;
+    text-align: left !important;
+  }
+  .timeline-node.left .timeline-orb,
+  .timeline-node.right .timeline-orb {
+    left: 10px;
+    right: auto;
+  }
+  .timeline-node.left .timeline-tags {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .cosmic-nav {
+    border-radius: 20px;
+    padding: 0.8rem 1.2rem;
+  }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    width: 100%;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-mystic);
+    border-radius: 16px;
+    padding: 1.5rem;
+    flex-direction: column;
+    gap: 1.2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  }
+  .nav-links.mobile-open {
+    display: flex;
+  }
+  .mobile-menu-btn {
+    display: block;
+  }
+  .hero-title {
+    font-size: 2.3rem;
+  }
+  .portal-container {
+    width: 300px;
+    height: 300px;
+  }
+  .portal-core {
+    width: 190px;
+    height: 190px;
+  }
+  .mandala-outer {
+    width: 270px;
+    height: 270px;
+  }
+  .mandala-inner {
+    width: 230px;
+    height: 230px;
+  }
+  .mystic-companion-widget {
+    bottom: 1.2rem;
+    right: 1.2rem;
+  }
+  .companion-speech-bubble {
+    display: none;
+  }
+}
