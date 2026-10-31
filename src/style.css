@@ -87,10 +87,10 @@ body {
   width: 100vw;
   height: 100vh;
   background: url('/assets/multiverse_nebula.jpg') center center / cover no-repeat;
-  opacity: 0.16;
+  opacity: 0.12;
   pointer-events: none;
   z-index: 0;
-  mix-blend-mode: screen;
+  transform: translateZ(0);
 }
 
 .content-container {
@@ -514,6 +514,8 @@ h1, h2, h3, .mystic-heading {
 .section-padding {
   padding: 6.5rem 0;
   position: relative;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
 }
 
 .section-header {
