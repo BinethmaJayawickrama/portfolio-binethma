@@ -6,7 +6,7 @@
 import { StarfieldEngine, CursorSparks, PortalEngine } from "./portal-canvas.js";
 import { soundFx } from "./audio.js";
 import { SorceressAvatarController } from "./avatar.js";
-import { projects, skillsData, timelineEvents, articles } from "./projects-data.js";
+import { projects, skillsCategories, timelineEvents, articles, personalBio } from "./projects-data.js";
 import confetti from "canvas-confetti";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 3. Dynamic Typewriter Effect for Subtitle
   initTypewriter();
 
-  // 4. Render Dynamic Sections
+  // 4. Render Dynamic Sections with Complete Details
   renderSkills();
   renderProjects("all");
   renderTimeline();
@@ -42,10 +42,10 @@ function initTypewriter() {
   if (!el) return;
 
   const phrases = [
-    "Full-Stack Sorcerer • IoT Reality Crafter • Creative AI Engineer",
-    "Undergraduate Scholar @ IIT Sri Lanka & University of Westminster",
-    "Inventor of the Smart Tail Pod • Architect of Adorix AI Kiosks",
-    "Bridging Physical Microcontrollers with Multiverse Web Realities"
+    "Full-Stack Developer specializing in modern web applications.",
+    "BSc (Hons) Computer Science Candidate @ IIT Sri Lanka & University of Westminster.",
+    "Architect of Adorix AI Kiosks & Smart Cattle IoT Telemetry.",
+    "Passionate about building scalable, user-focused digital experiences."
   ];
 
   let phraseIdx = 0;
@@ -60,7 +60,7 @@ function initTypewriter() {
       el.textContent = currentPhrase.slice(0, charIdx);
       if (charIdx === currentPhrase.length) {
         isDeleting = true;
-        setTimeout(typeStep, 2200);
+        setTimeout(typeStep, 2400);
         return;
       }
     } else {
@@ -74,31 +74,31 @@ function initTypewriter() {
       }
     }
 
-    const speed = isDeleting ? 30 : 65;
+    const speed = isDeleting ? 25 : 55;
     setTimeout(typeStep, speed);
   }
 
   typeStep();
 }
 
-// Render Skills Section
+// Render Skills Section with all 8 real categories
 function renderSkills() {
   const tabsContainer = document.getElementById("skills-tabs");
   const displayContainer = document.getElementById("skills-display-panel");
   if (!tabsContainer || !displayContainer) return;
 
   tabsContainer.innerHTML = "";
-  skillsData.forEach((skillGroup, idx) => {
+  skillsCategories.forEach((group, idx) => {
     const tab = document.createElement("button");
     tab.className = `skill-category-tab ${idx === 0 ? "active" : ""}`;
     tab.setAttribute("data-index", idx);
     tab.innerHTML = `
-      <div class="tab-glyph">✨</div>
-      <span>${skillGroup.category}</span>
+      <div class="tab-glyph">${group.icon}</div>
+      <span>${group.title}</span>
     `;
 
     tab.addEventListener("click", () => {
-      soundFx.playSpellChime(500 + idx * 80);
+      soundFx.playSpellChime(480 + idx * 50);
       document.querySelectorAll(".skill-category-tab").forEach(t => t.classList.remove("active"));
       tab.classList.add("active");
       showSkillGroup(idx);
@@ -108,33 +108,32 @@ function renderSkills() {
   });
 
   function showSkillGroup(idx) {
-    const group = skillsData[idx];
+    const group = skillsCategories[idx];
     displayContainer.innerHTML = `
       <div class="skill-panel-header">
-        <h3 class="panel-title">${group.category}</h3>
+        <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.4rem;">
+          <span style="font-size: 1.8rem;">${group.icon}</span>
+          <h3 class="panel-title">${group.title}</h3>
+        </div>
         <p class="panel-desc">${group.description}</p>
       </div>
-      <div class="skills-list">
-        ${group.items.map(item => `
-          <div class="skill-row">
-            <div class="skill-row-top">
-              <span>${item.name}</span>
-              <span class="skill-mastery">${item.level} [${item.xp}]</span>
-            </div>
-            <div class="skill-track">
-              <div class="skill-fill" style="width: ${item.xp};"></div>
-            </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.85rem; margin-top: 1rem;">
+        ${group.skills.map(s => `
+          <div style="display: flex; align-items: center; gap: 0.6rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-mystic); border-radius: 12px; padding: 0.8rem 1.2rem; font-family: var(--font-tech); font-size: 0.95rem; color: var(--text-main); box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.2s ease, border-color 0.2s ease;"
+               onmouseover="this.style.transform='translateY(-2px)'; this.style.borderColor='var(--portal-gold)';"
+               onmouseout="this.style.transform='none'; this.style.borderColor='var(--border-mystic)';">
+            <span style="color: var(--portal-gold);">✦</span>
+            <strong>${s}</strong>
           </div>
         `).join("")}
       </div>
     `;
   }
 
-  // Initial render
   showSkillGroup(0);
 }
 
-// Render Projects
+// Render Projects with all details visible
 function renderProjects(filter = "all") {
   const grid = document.getElementById("projects-grid");
   if (!grid) return;
@@ -146,24 +145,52 @@ function renderProjects(filter = "all") {
       <div class="card-media-wrapper">
         <img src="${p.image}" alt="${p.title}" loading="lazy" />
         <span class="card-dimension-tag">${p.dimension}</span>
-        <span class="card-badge">${p.badge}</span>
+        <span class="card-badge">${p.emoji} ${p.categoryLabel}</span>
       </div>
       <div class="card-body">
         <h3 class="card-title">${p.title}</h3>
-        <div class="card-subtitle">${p.subtitle}</div>
-        <p class="card-summary">${p.summary}</p>
-        <div class="tech-runes">
-          ${p.tech.slice(0, 4).map(t => `<span class="tech-rune">${t}</span>`).join("")}
+        <div class="card-subtitle">${p.tagline}</div>
+        <p class="card-summary">${p.description}</p>
+        
+        <!-- Key Features preview -->
+        <div style="margin-bottom: 1.2rem; background: rgba(0,0,0,0.25); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 0.85rem;">
+          <span style="display: block; font-family: var(--font-mono); font-size: 0.72rem; color: var(--portal-gold); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
+            ${p.challengesLabel}:
+          </span>
+          <ul style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 0.35rem;">
+            ${p.challenges.slice(0, 2).map(c => `
+              <li style="font-size: 0.82rem; color: var(--text-muted); display: flex; gap: 0.5rem; align-items: flex-start; line-height: 1.4;">
+                <span style="color: var(--portal-orange); flex-shrink: 0;">•</span>
+                <span>${c}</span>
+              </li>
+            `).join("")}
+          </ul>
         </div>
+
+        <!-- Tech Stack Badges -->
+        <div class="tech-runes">
+          ${p.tech.map(t => `<span class="tech-rune">${t}</span>`).join("")}
+        </div>
+
+        <!-- Action Links -->
         <div class="card-footer">
           <button class="inspect-portal-btn" data-project-id="${p.id}">
             <span>🔮</span>
-            <span>Inspect Realm</span>
+            <span>View All Details</span>
           </button>
+          
           <div class="card-links">
-            <a href="${p.links.github}" target="_blank" rel="noopener noreferrer" class="card-icon-link" title="Source Coordinates">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-            </a>
+            ${p.links.website ? `
+              <a href="${p.links.website}" target="_blank" rel="noopener noreferrer" class="hud-btn" style="padding: 0.4rem 0.8rem; font-size: 0.78rem; text-decoration: none; border-color: var(--portal-gold); color: var(--portal-gold);" title="Visit Live Platform">
+                <span>↗</span>
+                <span>Live Site</span>
+              </a>
+            ` : ""}
+            ${p.links.github ? `
+              <a href="${p.links.github}" target="_blank" rel="noopener noreferrer" class="card-icon-link" title="View Source Code">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              </a>
+            ` : ""}
           </div>
         </div>
       </div>
@@ -203,7 +230,7 @@ function renderTimeline() {
         <div class="timeline-orb"></div>
         <div class="timeline-card">
           <div class="timeline-epoch">${evt.year}</div>
-          <h3 class="timeline-heading">${evt.title}</h3>
+          <h3 class="timeline-heading">${evt.icon} ${evt.title}</h3>
           <div class="timeline-inst">${evt.institution}</div>
           <p class="timeline-desc">${evt.description}</p>
           <div class="timeline-tags">
@@ -230,7 +257,7 @@ function renderLore() {
       <h3 class="lore-title">${art.title}</h3>
       <p class="lore-excerpt">${art.excerpt}</p>
       <button class="read-lore-btn" data-article-id="${art.id}">
-        <span>Read Chronicle</span>
+        <span>Read Full Chronicle</span>
         <span>→</span>
       </button>
     </div>
@@ -238,13 +265,13 @@ function renderLore() {
 
   grid.querySelectorAll(".read-lore-btn").forEach(btn => {
     btn.addEventListener("click", () => {
-      const aid = btn.getAttribute("data-article-id");
+      const aid = parseInt(btn.getAttribute("data-article-id"), 10);
       openArticleModal(aid);
     });
   });
 }
 
-// Project Modal Logic
+// Project Modal Logic with complete details
 function openProjectModal(projectId) {
   const p = projects.find(item => item.id === projectId);
   if (!p) return;
@@ -257,43 +284,68 @@ function openProjectModal(projectId) {
   if (!target || !modal) return;
 
   target.innerHTML = `
-    <div class="modal-header-tag">[ ${p.dimension} // ${p.badge} ]</div>
-    <h2 class="modal-title">${p.title}</h2>
-    <div class="modal-subtitle">${p.subtitle}</div>
+    <div class="modal-header-tag">[ ${p.dimension} // ${p.categoryLabel} ]</div>
+    <h2 class="modal-title">${p.emoji} ${p.title}</h2>
+    <div class="modal-subtitle">${p.tagline}</div>
     <img src="${p.image}" alt="${p.title}" class="modal-hero-img" />
-    <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-main); margin-bottom: 1.5rem;">
-      ${p.summary}
-    </p>
-    <h4 style="font-family: var(--font-tech); color: var(--portal-gold); margin-bottom: 0.8rem; letter-spacing: 0.05em;">
-      ARCHITECTURAL BREAKTHROUGHS
+    
+    <div style="font-size: 1.05rem; line-height: 1.8; color: var(--text-main); margin-bottom: 1.8rem; background: rgba(0,0,0,0.25); padding: 1.2rem; border-radius: 14px; border: 1px solid var(--border-subtle);">
+      ${p.longDescription}
+    </div>
+
+    <!-- Key Features & Challenges -->
+    <h4 style="font-family: var(--font-tech); color: var(--portal-gold); margin-bottom: 0.8rem; letter-spacing: 0.05em; font-size: 1.1rem;">
+      ⚡ ${p.challengesLabel}
     </h4>
     <ul class="modal-bullets">
-      ${p.details.map(d => `
+      ${p.challenges.map(d => `
         <li>
           <span class="modal-bullet-glyph">✦</span>
           <span>${d}</span>
         </li>
       `).join("")}
     </ul>
-    <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.2rem; margin-bottom: 1.8rem;">
-      <h4 style="font-family: var(--font-tech); font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.6rem;">
-        DIMENSIONAL TELEMETRY METRICS
+
+    <!-- Key Deliverables & Results -->
+    ${p.results && p.results.length > 0 ? `
+      <h4 style="font-family: var(--font-tech); color: var(--timestone-neon); margin-top: 1.5rem; margin-bottom: 0.8rem; letter-spacing: 0.05em; font-size: 1.1rem;">
+        🏆 ${p.resultsLabel || "Key Results & Deliverables"}
       </h4>
-      <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
-        ${Object.entries(p.metrics).map(([k, v]) => `
-          <div>
-            <span style="display: block; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase;">${k}</span>
-            <strong style="font-family: var(--font-tech); font-size: 1.05rem; color: var(--portal-gold);">${v}</strong>
-          </div>
+      <ul class="modal-bullets">
+        ${p.results.map(r => `
+          <li>
+            <span class="modal-bullet-glyph" style="color: var(--timestone-neon);">✔</span>
+            <span>${r}</span>
+          </li>
         `).join("")}
+      </ul>
+    ` : ""}
+
+    <!-- Tech Stack -->
+    <div style="margin-top: 1.8rem; margin-bottom: 1.8rem;">
+      <h4 style="font-family: var(--font-tech); font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.6rem; text-transform: uppercase;">
+        TECHNOLOGIES & STACK
+      </h4>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+        ${p.tech.map(t => `<span class="tech-rune" style="padding: 0.4rem 0.8rem; font-size: 0.82rem;">${t}</span>`).join("")}
       </div>
     </div>
-    <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
-      <a href="${p.links.github}" target="_blank" rel="noopener noreferrer" class="btn-portal-primary" style="padding: 0.7rem 1.6rem; font-size: 0.9rem;">
-        <span>🐙</span>
-        <span>View Code Coordinates</span>
-      </a>
-      <button class="btn-portal-secondary modal-close-trigger" style="padding: 0.7rem 1.4rem; font-size: 0.9rem;">
+
+    <!-- Action Links -->
+    <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid var(--border-subtle);">
+      ${p.links.website ? `
+        <a href="${p.links.website}" target="_blank" rel="noopener noreferrer" class="btn-portal-primary" style="padding: 0.75rem 1.6rem; font-size: 0.95rem;">
+          <span>🌐</span>
+          <span>Visit Live Website</span>
+        </a>
+      ` : ""}
+      ${p.links.github ? `
+        <a href="${p.links.github}" target="_blank" rel="noopener noreferrer" class="btn-portal-secondary" style="padding: 0.75rem 1.6rem; font-size: 0.95rem;">
+          <span>🐙</span>
+          <span>View Source Code</span>
+        </a>
+      ` : ""}
+      <button class="btn-portal-secondary modal-close-trigger" style="padding: 0.75rem 1.4rem; font-size: 0.95rem;">
         <span>Return to Nexus</span>
       </button>
     </div>
@@ -318,7 +370,7 @@ function openArticleModal(articleId) {
     <div class="modal-header-tag">[ MULTIVERSE CHRONICLES // ${art.category} ]</div>
     <h2 class="modal-title">${art.title}</h2>
     <div class="modal-subtitle">Published ${art.date} • ${art.readTime}</div>
-    <div style="font-size: 1rem; line-height: 1.8; color: var(--text-main); margin-bottom: 2rem;">
+    <div style="font-size: 1.05rem; line-height: 1.8; color: var(--text-main); margin-bottom: 2rem;">
       ${art.content.replace(/\n\n/g, "<br/><br/>")}
     </div>
     <button class="btn-portal-primary modal-close-trigger" style="padding: 0.7rem 1.6rem; font-size: 0.9rem;">
@@ -375,7 +427,6 @@ function setupAudioToggle() {
   const icon = document.getElementById("audio-icon");
   if (!btn || !label) return;
 
-  // Initial state check
   if (soundFx.isMuted) {
     label.textContent = "FX: OFF";
     icon.textContent = "🔇";
@@ -452,7 +503,6 @@ function setupContactForm() {
     submitBtn.disabled = true;
     submitBtn.innerHTML = `<span>⚡</span><span>OPENING RIFT...</span>`;
 
-    // Confetti burst from button position
     const rect = submitBtn.getBoundingClientRect();
     confetti({
       particleCount: 60,
@@ -469,15 +519,16 @@ function setupContactForm() {
       submitBtn.style.background = "linear-gradient(135deg, #00b377, #00ffaa)";
       submitBtn.style.color = "#000";
 
-      // Form reset & polite feedback
+      // Form reset & mailto fallback
       setTimeout(() => {
-        alert(`🌌 Transmission dispatched to Binethma Jayawickrama across Universe-616!\n\nThank you ${name}. Your message has been logged.`);
+        window.location.href = `mailto:binethmad@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("Sender: " + name + " (" + email + ")\n\n" + message)}`;
+        alert(`🌌 Transmission ready! Thank you ${name}. Your default mail client has been opened to dispatch directly to binethmad@gmail.com.`);
         form.reset();
         submitBtn.disabled = false;
         submitBtn.innerHTML = `<span>⚡</span><span>DISPATCH TRANSMISSION SPELL</span>`;
         submitBtn.style.background = "";
         submitBtn.style.color = "";
-      }, 600);
+      }, 500);
     }, 900);
   });
 }

@@ -1,256 +1,329 @@
+// ==========================================================================
+// REAL DATA EXTRACTED FROM BINETHMA JAYAWICKRAMA'S PORTFOLIO
+// ==========================================================================
+
+export const personalBio = {
+  name: "Binethma Jayawickrama",
+  headline: "Full-Stack Developer • IoT Innovator • Creative Engineer",
+  shortBio: "Full-Stack Developer specializing in modern web applications. Passionate about building scalable, user-focused solutions using frontend and backend technologies to create seamless digital experiences.",
+  institution: "Informatics Institute of Technology (IIT Sri Lanka) / University of Westminster (UK)",
+  degree: "BSc (Hons) Computer Science Undergraduate",
+  status: "Available for Internships & Full-Stack Opportunities (2026)",
+  location: "Colombo, Sri Lanka",
+  email: "binethmad@gmail.com",
+  phone: "+94 70 113 1651",
+  socials: {
+    github: "https://github.com/BinethmaJayawickrama",
+    linkedin: "https://www.linkedin.com/in/binethma/",
+    instagram: "https://www.instagram.com/coffeforurhed?igsh=MTVxcmVoeGhubDcw"
+  }
+};
+
 export const projects = [
   {
-    id: "adorix",
+    id: "01",
     dimension: "DIMENSION AI-01",
     title: "Adorix",
-    subtitle: "AI-Powered Conversational Sales Kiosk",
     category: "ai",
-    badge: "Flagship AI Realm",
+    categoryLabel: "AI & Interactive Sales",
+    tagline: "AI-Powered Conversational Sales Kiosk (2025–2026)",
     image: "/assets/project_adorix.jpg",
-    summary: "Next-generation retail interactive assistant featuring natural conversational AI, facial detection, smart product recommendations, and voice telemetry.",
-    details: [
-      "Designed and engineered an autonomous AI sales assistant capable of natural multi-turn voice and text conversations with customers in retail environments.",
-      "Integrated real-time computer vision for customer engagement detection and contextual recommendation heuristics.",
-      "Engineered low-latency speech-to-text and voice synthesis pipelines for seamless human-machine dialogue.",
-      "Built with high-availability microservices architecture to synchronize catalog inventory and user purchase intent in real time."
+    emoji: "🤖",
+    description: "An AI-powered sales kiosk that synchronizes video presence tracking with speech interfaces and interactive recommendations.",
+    longDescription: "Adorix redefines interactive retail kiosks by combining edge computer vision and real-time Conversational AI. Built to operate in offline/low-latency environments, it detects customer engagement levels through facial presence tracking, welcomes them via synthesized speech, and navigates product catalogues through structured voice dialogue. The backend synchronizes video inputs with FastAPI endpoints to serve low-latency interactions.",
+    challengesLabel: "Key Features & Engineering Challenges",
+    challenges: [
+      "Optimizing MediaPipe landmark detection to run at 30fps on low-power kiosk hardware.",
+      "Achieving sub-500ms voice-to-text response latency over WebSockets.",
+      "Designing a state-management machine that resolves interrupted conversations gracefully."
     ],
-    tech: ["Next.js", "TypeScript", "Python", "FastAPI", "OpenCV", "Whisper AI", "WebSockets", "Tailwind CSS"],
-    metrics: { latency: "< 350ms", accuracy: "98.4%", platform: "Interactive Kiosk & Web" },
-    links: { demo: "#", github: "https://github.com/BinethmaJayawickrama", article: "#lore-adorix" }
+    resultsLabel: "Key Deliverables & Results",
+    results: [
+      "Built a functional prototype running facial presence sweeps with zero frame drops.",
+      "Reduced speech latency to 420ms by implementing streaming audio pipelines.",
+      "Implemented a Supabase sync backend mapping metrics on customer interest profiles."
+    ],
+    tech: ["Python", "OpenCV", "FastAPI", "React.js", "Tailwind CSS", "WebSockets", "Supabase"],
+    links: {
+      github: "https://github.com/BinethmaJayawickrama",
+      website: "https://adorixit.com/"
+    }
   },
   {
-    id: "cattle-iot",
+    id: "02",
     dimension: "DIMENSION IOT-02",
     title: "Smart Cattle Breeding & Heat Detection",
-    subtitle: "IoT-Enabled Livestock Telemetry & Cloud Platform",
     category: "iot",
-    badge: "Hardware & Cloud Fusion",
+    categoryLabel: "IoT Systems & Agriculture",
+    tagline: "IoT-Enabled Cattle Breeding Management Platform (2026, ongoing)",
     image: "/assets/project_cattle.jpg",
-    summary: "Proprietary non-invasive tail-mounted IoT sensor pod ('Smart Tail Pod') detecting bovine estrus cycles and biometric telemetry in real-time.",
-    details: [
-      "Invented and prototyped a ruggedized tail-worn sensor node featuring 6-axis IMU accelerometers, temperature probes, and long-range wireless telemetry.",
-      "Formulated sensor fusion algorithms to distinguish authentic heat behaviors from typical grazing and tail-swishing motions.",
-      "Constructed a cloud dashboard delivering SMS/push alerts to farm managers within minutes of confirmed estrus detection.",
-      "Drastically reduces artificial insemination missed-window rates, empowering sustainable livestock reproduction."
+    emoji: "🐄",
+    description: "An IoT-enabled cattle breeding management platform designed to improve reproductive efficiency in dairy and livestock farms.",
+    longDescription: "Developed an IoT-enabled cattle breeding management platform designed to improve reproductive efficiency in dairy and livestock farms. The system maintains comprehensive cattle profiles, tracks breeding and health records, monitors real-time sensor data, and assists farmers in identifying heat (estrus) periods for timely artificial insemination. The platform combines farm management features with data-driven monitoring to support better breeding decisions and herd productivity.",
+    challengesLabel: "Key Features & Deliverables",
+    challenges: [
+      "Individual cattle profile management and health lifecycle tracking.",
+      "Breeding and artificial insemination scheduling & predictive alerts.",
+      "Health and vaccination record management with audit trails.",
+      "IoT-based heat detection and activity monitoring with tail-worn sensor pods.",
+      "Historical biometric data collection and trend analytics.",
+      "Farmer-friendly responsive dashboard and automated alert reporting system."
     ],
-    tech: ["ESP32 / MicroPython", "MQTT / LoRaWAN", "AWS IoT Core", "Node.js", "React", "Chart.js", "PostgreSQL"],
-    metrics: { batteryLife: "6+ Months", detectionRate: "94.8%", range: "Up to 5 km" },
-    links: { demo: "#", github: "https://github.com/BinethmaJayawickrama", article: "#lore-cattle" }
+    resultsLabel: "Engineering Highlights",
+    results: [
+      "Successfully prototyped wearable tail pod enclosures with waterproof sealing.",
+      "Implemented low-power wireless telemetry intervals yielding 6+ months continuous battery operation.",
+      "Empowers dairy operations with timely insemination windows, drastically reducing missed fertility cycles."
+    ],
+    tech: ["IoT Sensors", "Embedded Systems", "Database Management", "Web Development", "Mobile Development", "Data Analytics", "Machine Learning"],
+    links: {
+      github: "https://github.com/BinethmaJayawickrama",
+      badge: "Ongoing Innovation • Private Hardware Repository"
+    }
   },
   {
-    id: "apexfled",
+    id: "03",
     dimension: "DIMENSION COMM-03",
     title: "ApexFled",
-    subtitle: "Premium Digital E-Commerce Web Ecosystem",
     category: "web",
-    badge: "Full-Stack Web",
+    categoryLabel: "Full-Stack E-Commerce",
+    tagline: "Premium Digital E-Commerce Platform (2026)",
     image: "/assets/project_apexfled.jpg",
-    summary: "Ultra-high-performance e-commerce marketplace platform engineered for speed, immersive product discovery, and friction-free checkout workflows.",
-    details: [
-      "Architected a scalable digital storefront with server-side rendering, sub-second page transitions, and progressive image hydration.",
-      "Implemented secure multi-gateway checkout with Stripe and webhook-based order processing.",
-      "Created an administrative command center for live inventory management, order fulfillment, and user behavioral analytics.",
-      "Optimized for 99+ Lighthouse performance across mobile and desktop viewports."
+    emoji: "🛍️",
+    description: "High-performance digital account storefront utilizing microservice APIs, state sync, and secure transactional databases.",
+    longDescription: "ApexFled is a full-featured digital storefront optimized for speed, reliability, and security. Utilizing Next.js Server Components, it fetches catalogue configurations dynamically with low server response times. The platform supports secure user profiles, Stripe checkout transactions, and PostgreSQL schemas with real-time stock sync.",
+    challengesLabel: "Key Features & Engineering Challenges",
+    challenges: [
+      "Implementing optimistic state updates for immediate cart interactions without layout shifts.",
+      "Restructuring database queries to prevent deadlock situations during flash sales.",
+      "Optimizing image rendering configurations to achieve maximum Lighthouse performance metrics."
     ],
-    tech: ["React 19", "Next.js App Router", "TypeScript", "PostgreSQL", "Prisma ORM", "Stripe API", "Zustand"],
-    metrics: { lighthouseScore: "99/100", checkoutSpeed: "2.1s avg", modularComponents: "45+" },
-    links: { demo: "#", github: "https://github.com/BinethmaJayawickrama" }
+    resultsLabel: "Key Deliverables & Results",
+    results: [
+      "Achieved sub-1.2s page load speed, scoring 98/100 on mobile Lighthouse performance checks.",
+      "Designed secure database triggers in PostgreSQL mapping inventory locks on transaction starts.",
+      "Built a custom dashboard tracking revenue summaries, fulfillment, and transactional logs."
+    ],
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "PostgreSQL", "REST APIs"],
+    links: {
+      github: "https://github.com/SithikaWeerasinghe/digital-account-store",
+      website: "https://www.apexfled.com/"
+    }
   },
   {
-    id: "visionsync",
-    dimension: "DIMENSION CV-04",
-    title: "Vision Sync",
-    subtitle: "AI Gesture & Hand Landmark Screen Brightness Controller",
-    category: "ai",
-    badge: "Computer Vision",
+    id: "04",
+    dimension: "DIMENSION GAME-04",
+    title: "WordSearch App",
+    category: "mobile",
+    categoryLabel: "Mobile Systems & Gaming",
+    tagline: "Interactive Mobile Puzzle Game (2026)",
     image: "/assets/project_visionsync.jpg",
-    summary: "Contactless computer vision utility tracking hand landmarks and gesture pinch-distances to dynamically control display brightness and media parameters.",
-    details: [
-      "Utilized real-time 21-point hand landmark coordinate estimation via webcam feed with zero dedicated sensor hardware required.",
-      "Calculated normalized Euclidean distance between thumb and index fingertips with exponential moving average smoothing to eliminate jitter.",
-      "Interfaced with native OS brightness APIs and desktop window subsystems for instantaneous hardware response.",
-      "Runs completely client-side in real-time at 60 FPS with minimal CPU footprint."
+    emoji: "🧩",
+    description: "Custom mobile word search game built using Google's Dart system and Material 3 design directives for fluid rendering.",
+    longDescription: "WordSearch is an elegant, responsive mobile puzzle game built in Flutter. Adhering strictly to Material 3 guidelines, the interface automatically shifts colors to harmonize with themes. It features a custom grid-drawing canvas that maps touch vectors to letter paths, complete with smooth particle animations.",
+    challengesLabel: "Key Features & Engineering Challenges",
+    challenges: [
+      "Calculating touch coordinate intersections on irregular mobile screen aspect ratios.",
+      "Building an offline dictionary index that validates 10,000+ words within milliseconds.",
+      "Designing responsive layouts that scale gracefully from compact phones to tablets."
     ],
-    tech: ["Python", "OpenCV", "MediaPipe", "NumPy", "Screen Brightness API", "Tkinter / GUI"],
-    metrics: { fps: "60 FPS", latency: "12ms", accuracy: "99.1%" },
-    links: { demo: "#", github: "https://github.com/BinethmaJayawickrama" }
+    resultsLabel: "Key Deliverables & Results",
+    results: [
+      "Developed a custom-gesture grid tracking letter-swipes at silky smooth 60fps.",
+      "Created dynamic theme support shifting color variables in real-time.",
+      "Packaged and verified target compilations on Android platforms."
+    ],
+    tech: ["Flutter", "Dart", "Material 3", "Android SDK", "Git"],
+    links: {
+      github: "https://github.com/BinethmaJayawickrama/word_search_app"
+    }
   },
   {
-    id: "teamflow",
+    id: "05",
     dimension: "DIMENSION OPS-05",
     title: "TeamFlow",
-    subtitle: "Collaborative Sprint & Task Management Platform",
     category: "web",
-    badge: "Full-Stack Web",
+    categoryLabel: "Productivity & Workspace",
+    tagline: "Role-Based Project & Task Management Platform (2026)",
     image: "/assets/project_apexfled.jpg",
-    summary: "Enterprise-grade sprint orchestration workspace offering real-time task board synchronization, role-based permissions, and milestone tracking.",
-    details: [
-      "Engineered real-time drag-and-drop Kanban boards with WebSocket state broadcasting across multiple connected team members.",
-      "Implemented comprehensive RBAC (Role-Based Access Control) across Admin, Project Lead, and Developer tiers.",
-      "Built automated sprint velocity charts, burndown metrics, and timeline dependency mapping.",
-      "Integrated automated email digest notifications and Slack webhook dispatchers."
+    emoji: "📋",
+    description: "A collaborative workspace tool featuring dynamic role-based dashboards, secure JWT authorization, task tracking, and real-time alerts.",
+    longDescription: "TeamFlow is a production-ready project management application designed to align teams, automate project telemetry, and centralize documentation. Built using Next.js on the frontend and Express.js on the backend, it offers tailored workspaces for Admins, Project Managers, and Team Collaborators. It features a project-wide reports directory, live task checklists, interactive Kanban workflows, and a real-time event system driven by Socket.io.",
+    challengesLabel: "Key Features & Engineering Challenges",
+    challenges: [
+      "Securing route configurations with dynamic JWT credentials and React RouteGuard constraints.",
+      "Configuring Prisma ORM with connection pooling via PgBouncer for low-latency queries.",
+      "Establishing instant socket notifications for project managers when deliverables are completed."
     ],
-    tech: ["React", "Node.js", "Express", "Socket.io", "MongoDB", "JWT Auth", "Docker"],
-    metrics: { syncLatency: "< 50ms", securityScore: "A+", testCoverage: "88%" },
-    links: { demo: "#", github: "https://github.com/BinethmaJayawickrama" }
+    resultsLabel: "Key Deliverables & Results",
+    results: [
+      "Completed a multi-tier role dashboard with zero permission boundary leaks.",
+      "Reduced database query overhead by implementing consolidated relation-includes in backend services.",
+      "Deployed frontend to Vercel and API servers to Railway with automated git webhook builds."
+    ],
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL", "Supabase", "WebSockets"],
+    links: {
+      github: "https://github.com/BinethmaJayawickrama/TeamFlow-Project-",
+      website: "https://team-flow-project-sigma.vercel.app"
+    }
   },
   {
-    id: "wordsearch",
-    dimension: "DIMENSION GAME-06",
-    title: "WordSearch Quest",
-    subtitle: "Interactive Cross-Platform Mobile Puzzle Engine",
-    category: "mobile",
-    badge: "Mobile Architecture",
+    id: "06",
+    dimension: "DIMENSION CV-06",
+    title: "Vision Sync",
+    category: "ai",
+    categoryLabel: "AI & Computer Vision",
+    tagline: "AI Gesture Brightness Controller (2026)",
     image: "/assets/project_visionsync.jpg",
-    summary: "Addictive algorithmic word puzzle mobile game crafted in Flutter / Dart with procedural grid generation, dynamic themes, and haptic feedback.",
-    details: [
-      "Constructed a trie-based directional word search matrix generator that procedurally creates intersecting vocabulary grids of variable difficulty.",
-      "Implemented fluid finger swipe tracking with SVG path rendering, glowing letter trails, and subtle haptic feedback.",
-      "Built with local persistent state and cloud leaderboard synchronization.",
-      "Designed according to Google Material 3 design specifications with fluid 120Hz animations."
+    emoji: "👁️",
+    description: "Computer vision mapping utilities converting hand geometry coordinates into active Windows system adjustments in real time.",
+    longDescription: "Vision Brightness Sync is a hands-free computer control utility. Running a lightweight background camera capture loop, it maps hand gesture geometry vectors from MediaPipe's hand-tracker to control Windows system brightness, allowing contactless system management.",
+    challengesLabel: "Key Features & Engineering Challenges",
+    challenges: [
+      "Reducing camera feed processing overhead to prevent high CPU usage states.",
+      "Mitigating brightness jitter by implementing moving average filters on coordinate vectors.",
+      "Ensuring gesture recognition remains accurate in dim-light conditions."
     ],
-    tech: ["Flutter", "Dart", "Material Design 3", "SQLite", "Firebase Auth", "Haptics Engine"],
-    metrics: { refreshRate: "120 FPS", installSize: "< 18MB", levels: "200+ Generated" },
-    links: { demo: "#", github: "https://github.com/BinethmaJayawickrama" }
+    resultsLabel: "Key Deliverables & Results",
+    results: [
+      "Reduced CPU overhead to less than 4% on modern hardware.",
+      "Created smooth brightness steps using double exponential smoothing filters.",
+      "Developed a system tray menu for easy startup configuration."
+    ],
+    tech: ["Python", "OpenCV", "FastAPI", "NumPy", "MediaPipe"],
+    links: {
+      github: "https://github.com/BinethmaJayawickrama/vision-brightness-sync"
+    }
   }
 ];
 
-export const skillsData = [
+export const skillsCategories = [
   {
-    category: "Front-End Sorcery",
-    icon: "code",
-    mandalaColor: "#ff9100",
-    description: "Crafting fluid, high-velocity user interfaces and immersive dimensional web experiences.",
-    items: [
-      { name: "React 19 & Next.js", level: "Expert", xp: "95%" },
-      { name: "TypeScript & Modern JS (ESNext)", level: "Advanced", xp: "92%" },
-      { name: "Tailwind CSS & Vanilla CSS Architecture", level: "Master", xp: "98%" },
-      { name: "HTML5 Canvas, Three.js & Micro-Animations", level: "Advanced", xp: "88%" },
-      { name: "UI/UX & State Architecture (Zustand/Redux)", level: "Advanced", xp: "90%" }
-    ]
+    id: "programming",
+    title: "Programming Languages",
+    icon: "💻",
+    description: "Core languages used to build software architectures, scripts, and algorithms.",
+    skills: ["Python", "Java", "JavaScript"]
   },
   {
-    category: "Back-End & Core Alchemy",
-    icon: "server",
-    mandalaColor: "#ff4d00",
-    description: "Architecting resilient APIs, distributed database schemas, and robust server microservices.",
-    items: [
-      { name: "Node.js & Express.js", level: "Advanced", xp: "92%" },
-      { name: "Python & FastAPI / Flask", level: "Advanced", xp: "88%" },
-      { name: "Java & Object-Oriented Software Design", level: "Intermediate", xp: "80%" },
-      { name: "PostgreSQL, MongoDB & Prisma ORM", level: "Advanced", xp: "90%" },
-      { name: "RESTful & WebSocket Protocol Architecture", level: "Master", xp: "94%" }
-    ]
+    id: "frontend",
+    title: "Frontend Development",
+    icon: "🌐",
+    description: "Modern web frameworks, design systems, and responsive user interfaces.",
+    skills: ["HTML5", "CSS3", "JavaScript", "React.js", "Next.js", "Tailwind CSS", "Responsive Design"]
   },
   {
-    category: "Hardware & IoT Rifts",
-    icon: "cpu",
-    mandalaColor: "#00f0ff",
-    description: "Bridging the physical realm and the cloud with microcontrollers, sensors, and telemetry.",
-    items: [
-      { name: "ESP32 & ESP8266 Microcontrollers", level: "Master", xp: "95%" },
-      { name: "MicroPython & C/C++ Embedded Code", level: "Advanced", xp: "88%" },
-      { name: "MQTT, LoRaWAN & HTTP Telemetry", level: "Advanced", xp: "90%" },
-      { name: "Sensor Fusion (IMU, Temp, Biometrics)", level: "Advanced", xp: "86%" },
-      { name: "Circuit Prototyping & PCB Diagnostics", level: "Intermediate", xp: "82%" }
-    ]
+    id: "mobile",
+    title: "Mobile Application Development",
+    icon: "📱",
+    description: "Cross-platform mobile apps crafted with fluid animations and native integrations.",
+    skills: ["Flutter", "Dart", "Android SDK", "Material Design 3"]
   },
   {
-    category: "AI & Vision Divination",
-    icon: "sparkles",
-    mandalaColor: "#00ffaa",
-    description: "Empowering software with synthetic cognition, computer vision, and autonomous agent loops.",
-    items: [
-      { name: "Computer Vision & OpenCV", level: "Advanced", xp: "89%" },
-      { name: "MediaPipe Hand/Face Landmark Models", level: "Advanced", xp: "92%" },
-      { name: "LLM Orchestration & Prompt Architecture", level: "Advanced", xp: "90%" },
-      { name: "Speech-to-Text & Speech Synthesis Pipelines", level: "Intermediate", xp: "84%" },
-      { name: "AI Agent Development & RAG Systems", level: "Intermediate", xp: "85%" }
-    ]
+    id: "cv",
+    title: "Computer Vision & Image Processing",
+    icon: "👁️",
+    description: "Real-time edge image processing, face detection, and hand landmark tracking.",
+    skills: ["OpenCV", "MediaPipe", "NumPy", "Video Stream Pipelines"]
   },
   {
-    category: "Sacred Artifacts & DevOps",
-    icon: "terminal",
-    mandalaColor: "#c77dff",
-    description: "Armoring projects with reliable delivery pipelines, containerization, and version control.",
-    items: [
-      { name: "Git, GitHub & Branch Strategies", level: "Master", xp: "96%" },
-      { name: "Docker Containerization", level: "Intermediate", xp: "82%" },
-      { name: "Linux Administration & Bash Scripting", level: "Advanced", xp: "86%" },
-      { name: "Vercel, AWS IoT & Cloud Deployment", level: "Advanced", xp: "90%" },
-      { name: "CI/CD & Automated Testing Discipline", level: "Advanced", xp: "85%" }
-    ]
+    id: "database",
+    title: "Database Management",
+    icon: "🗄️",
+    description: "Relational and cloud document databases with optimized schemas and indexing.",
+    skills: ["MySQL", "SQL", "PostgreSQL", "Supabase", "Prisma ORM"]
+  },
+  {
+    id: "networking",
+    title: "Networking & Protocols",
+    icon: "📡",
+    description: "Network configuration, IP addressing, WebSocket streaming, and distributed communication.",
+    skills: ["IP Addressing", "Configuration", "Fundamentals", "WebSockets", "MQTT"]
+  },
+  {
+    id: "design",
+    title: "UI/UX & Design Tools",
+    icon: "🎨",
+    description: "User journey mapping, wireframing, high-fidelity prototypes, and component libraries.",
+    skills: ["Figma", "UI/UX Architecture", "Wireframing", "Interactive Prototyping"]
+  },
+  {
+    id: "tools",
+    title: "Development Tools & Platforms",
+    icon: "🛠️",
+    description: "Modern developer workflow tools, version control, and cloud deployment pipelines.",
+    skills: ["Git", "GitHub", "Vercel", "Railway", "Version Control", "CI/CD & Deployment"]
   }
 ];
 
 export const timelineEvents = [
   {
-    year: "2023 - 2027 (Expected)",
+    year: "2023 - 2027 (Undergrad)",
     title: "BSc (Hons) Computer Science",
-    institution: "University of Westminster / IIT Sri Lanka",
-    icon: "graduation-cap",
-    description: "Pursuing rigorous academic grounding in software architecture, algorithms, IoT, artificial intelligence, and distributed systems at Informatics Institute of Technology.",
-    tags: ["Higher Education", "Computer Science", "Westminster UK Degree"]
+    institution: "Informatics Institute of Technology (IIT) / University of Westminster (UK)",
+    icon: "🎓",
+    description: "Pursuing rigorous academic grounding in software architecture, computer systems, data structures, algorithms, IoT, and AI.",
+    tags: ["Degree Candidate", "Westminster UK", "IIT Sri Lanka", "Seeking Internships"]
   },
   {
-    year: "2024",
-    title: "Genesis of the Smart Tail Pod (IoT Agriculture)",
-    institution: "AgriTech Innovation Laboratory",
-    icon: "radio",
-    description: "Pioneered research and hardware prototypes for non-invasive livestock estrus cycle detection using ESP32 sensor pods and cloud telemetry.",
-    tags: ["IoT Hardware", "MicroPython", "Precision Agriculture"]
+    year: "2025 - 2026",
+    title: "Adorix Conversational Sales Kiosk",
+    institution: "AI & Computer Vision Flagship",
+    icon: "🤖",
+    description: "Spearheaded the development of an autonomous AI sales kiosk with MediaPipe facial presence sweeps, low-latency audio pipelines (420ms), and real-time inventory dialogue.",
+    tags: ["FastAPI", "React", "OpenCV", "WebSockets", "Live Product"]
   },
   {
-    year: "2025",
-    title: "Architecting Adorix Conversational Sales Kiosks",
-    institution: "Autonomous AI Research & Dev",
-    icon: "bot",
-    description: "Designed voice-enabled computer vision sales kiosks capable of real-time human interaction, dynamic recommendation, and automated retail assistance.",
-    tags: ["Conversational AI", "Computer Vision", "Next.js"]
+    year: "2026 (Ongoing)",
+    title: "Smart Cattle Breeding & Heat Detection Platform",
+    institution: "IoT Agricultural Innovation",
+    icon: "🐄",
+    description: "Engineered wearable IoT tail sensor pods and a centralized farm manager dashboard to identify bovine estrus cycles and track herd breeding telemetry.",
+    tags: ["IoT Wearables", "Embedded Systems", "Livestock Telemetry", "Agritech"]
   },
   {
-    year: "2026 - Present",
-    title: "Full-Stack & Multi-Universe Web Engineering",
-    institution: "Open Source & Industry Ventures",
-    icon: "globe",
-    description: "Building production web applications, exploring multi-agent software ecosystems, publishing technical insights, and creating immersive digital portals.",
-    tags: ["Full-Stack", "Creative Engineering", "Production Systems"]
+    year: "2026",
+    title: "ApexFled & TeamFlow Platforms",
+    institution: "Full-Stack Enterprise & Commerce",
+    icon: "🚀",
+    description: "Delivered production web platforms: ApexFled (98/100 Lighthouse digital account store) and TeamFlow (role-based sprint management system).",
+    tags: ["Next.js", "TypeScript", "PostgreSQL", "Supabase", "Production"]
   }
 ];
 
 export const articles = [
   {
-    id: "lore-adorix",
-    title: "Building Adorix: Bringing Conversational AI to Physical Kiosks",
-    date: "October 2026",
-    readTime: "6 min read",
-    category: "AI & Robotics",
-    excerpt: "How we tackled low-latency speech pipelines, ambient noise cancellation, and facial tracking to create a truly responsive autonomous retail assistant.",
+    id: 2,
+    category: "AI / Computer Vision",
+    title: "Building Adorix: What I learned making an AI kiosk from scratch",
+    excerpt: "From face detection pipelines to WebSocket streaming — the real challenges behind building a real-time AI retail experience.",
+    date: "April 2026",
+    readTime: "8 min read",
     content: `
-      ### The Physical AI Frontier
-      While web chatbots have become ubiquitous, deploying intelligent conversational agents into physical kiosk terminals introduces radical real-world challenges: ambient acoustic noise, variable lighting conditions, and the expectation of sub-second conversational latency.
+      ### The Vision Behind Adorix
+      Adorix is built to redefine how customers interact with retail kiosks by combining edge computer vision and real-time conversational AI. Instead of tap-only menus, customers are greeted by an intelligent conversational assistant that tracks presence, welcomes them naturally, and responds dynamically.
 
-      ### Architecture & Breakthroughs
-      1. **Sub-350ms Speech Pipeline**: By piping audio streams through custom WebSocket buffers directly to lightweight quantized speech recognition models, we brought turn-around latency under human pause thresholds.
-      2. **Vision Engagement Triggers**: Instead of requiring a wake word, Adorix uses lightweight OpenCV face and gaze tracking to detect when a customer steps within interacting proximity and glances towards the display.
-      3. **Contextual Product Recommender**: The dialogue manager retains cart context and suggests relevant complementary accessories based on user inquiries.
+      ### Key Engineering Challenges
+      1. **Edge Computer Vision Performance**: We needed to run MediaPipe facial tracking and customer presence sweeps at a solid 30fps without choking low-power kiosk hardware.
+      2. **Sub-500ms Audio Latency**: Standard REST audio requests caused awkward conversational pauses. By transitioning to a duplex WebSocket streaming pipeline with FastAPI, we pushed speech-to-text response latency down to 420ms.
+      3. **Graceful Interrupt Handling**: Customers frequently interrupt dialogue. We engineered a reactive state machine that cancels previous speech generation and re-synchronizes the cart context immediately.
     `
   },
   {
-    id: "lore-cattle",
-    title: "Connecting Cows to the Cloud: The Smart Tail Pod Journey",
-    date: "September 2026",
-    readTime: "8 min read",
-    category: "IoT & Hardware",
-    excerpt: "From soldering breadboards to designing waterproof enclosures for dairy cattle: detecting bovine estrus cycles through 6-axis accelerometer sensor fusion.",
+    id: 3,
+    category: "IoT Systems",
+    title: "Connecting cows to the cloud: the Smart Tail Pod journey",
+    excerpt: "What happens when software meets agriculture. Building wearable IoT sensors for cattle heat detection and what the data actually looks like.",
+    date: "March 2026",
+    readTime: "6 min read",
     content: `
-      ### The Problem in Modern Dairy Husbandry
-      Missed estrus (heat) cycles cost dairy farmers thousands of dollars per cow annually due to lost milk production and prolonged calving intervals. Traditional visual observation misses over 40% of heat events that occur late at night.
+      ### Bridging Software with Dairy Agriculture
+      Estrus (heat) detection is one of the most critical factors in modern dairy farm profitability. A missed heat cycle delays reproduction and costs farmers significant lost revenue per cow.
 
-      ### The Smart Tail Pod Solution
-      - **Non-Invasive Enclosure**: Placed gently on the cow's tail root, the pod measures distinct behavioral spikes associated with heat (increased restlessness, tail-raising frequencies, and body temperature fluctuations).
-      - **On-Device Edge Filtering**: To conserve battery life for 6+ months, the ESP32 performs edge filtering, only transmitting encrypted telemetry bursts over MQTT when anomalous behavioral signatures cross threshold confidence bounds.
-      - **Real-Time Farm Manager Dispatch**: Farmers receive immediate alerts on mobile dashboards, allowing timely veterinary intervention and artificial insemination.
+      ### The Smart Tail Pod Hardware & Cloud Telemetry
+      - **Tail-Root Motion Tracking**: Mounted securely on the cow's tail root, the sensor pod captures continuous activity profiles, detecting the distinctive movement bursts associated with standing heat.
+      - **Edge Sensor Filtering**: Raw accelerometer readings are smoothed on-device, transmitting telemetry bursts over MQTT to save battery life.
+      - **Cloud Analytics & Timely Dispatch**: The farm manager dashboard displays real-time herd health, automated alerts, and vaccination histories, allowing timely artificial insemination.
     `
   }
 ];
