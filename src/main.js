@@ -6,6 +6,11 @@
 import { StarfieldEngine, CursorSparks, PortalEngine } from "./portal-canvas.js";
 import { soundFx } from "./audio.js";
 import { SorceressAvatarController } from "./avatar.js";
+import { PortalTransition, portalTransition } from "./components/PortalTransition.js";
+import { FloatingAvatar } from "./components/FloatingAvatar.js";
+import { PeekingAvatar } from "./components/PeekingAvatar.js";
+import { MagicParticles } from "./components/MagicParticles.js";
+import { initScrollAnimations } from "./components/ScrollAnimations.js";
 import { projects, skillsCategories, timelineEvents, articles, personalBio } from "./projects-data.js";
 import confetti from "canvas-confetti";
 
@@ -15,8 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const cursorSparks = new CursorSparks("cursor-canvas");
   const portalEngine = new PortalEngine("portal-canvas");
 
-  // 2. Initialize Companion Avatar
+  // 2. Initialize Avatar Components (Instructions #2, #3, #4)
   const companion = new SorceressAvatarController();
+  const floatingAvatar = new FloatingAvatar("floating-avatar-container");
+  const peekingAvatar = new PeekingAvatar("peeking-avatar-container");
 
   // 3. Dynamic Typewriter Effect for Subtitle
   initTypewriter();
@@ -27,8 +34,12 @@ document.addEventListener("DOMContentLoaded", () => {
   renderTimeline();
   renderLore();
 
-  // 5. Setup Interactive Event Listeners
+  // 5. Scroll-Based Reveals (Instruction #5)
+  initScrollAnimations();
+
+  // 6. Setup Interactive Event Listeners & Portal Transitions (Instruction #1)
   setupNavigation();
+  setupHeroActions(companion);
   setupAudioToggle();
   setupTimeStoneToggle(portalEngine);
   setupProjectModals();
@@ -197,7 +208,7 @@ function renderProjects(filter = "all") {
     </div>
   `).join("");
 
-  // Attach modal trigger listeners to all inspect buttons
+  // Attach modal trigger listeners
   grid.querySelectorAll(".inspect-portal-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       const pid = btn.getAttribute("data-project-id");
@@ -398,7 +409,7 @@ function setupProjectModals() {
   }
 }
 
-// Navigation & Smooth Scroll
+// Navigation with Main Portal Transition (Instruction #1)
 function setupNavigation() {
   const links = document.querySelectorAll(".nav-links a");
   const mobileBtn = document.getElementById("mobile-menu-btn");
@@ -411,13 +422,38 @@ function setupNavigation() {
   }
 
   links.forEach(link => {
-    link.addEventListener("click", () => {
-      soundFx.playSpellChime(700);
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const href = link.getAttribute("href");
+      const targetId = href ? href.replace("#", "") : "nexus";
+
       links.forEach(l => l.classList.remove("active"));
       link.classList.add("active");
       if (navLinksContainer) navLinksContainer.classList.remove("mobile-open");
+
+      // Trigger full-screen circular magical portal transition!
+      portalTransition.transitionTo(targetId);
     });
   });
+}
+
+// Hero Actions & Avatar Portal Trigger (Instruction #4)
+function setupHeroActions(companion) {
+  const exploreBtn = document.getElementById("btn-explore-dimensions");
+  const summonBtn = document.getElementById("btn-summon-companion");
+
+  if (exploreBtn) {
+    exploreBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      portalTransition.transitionTo("dimensions");
+    });
+  }
+
+  if (summonBtn) {
+    summonBtn.addEventListener("click", () => {
+      companion.summonPortalTo("about");
+    });
+  }
 }
 
 // Audio Toggle Button
@@ -519,13 +555,12 @@ function setupContactForm() {
       submitBtn.style.background = "linear-gradient(135deg, #00b377, #00ffaa)";
       submitBtn.style.color = "#000";
 
-      // Form reset & mailto fallback
       setTimeout(() => {
         window.location.href = `mailto:binethmad@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("Sender: " + name + " (" + email + ")\n\n" + message)}`;
         alert(`🌌 Transmission ready! Thank you ${name}. Your default mail client has been opened to dispatch directly to binethmad@gmail.com.`);
         form.reset();
         submitBtn.disabled = false;
-        submitBtn.innerHTML = `<span>⚡</span><span>DISPATCH TRANSMISSION SPELL</span>`;
+        submitBtn.innerHTML = `<span>⚡</span><span>DISPATCH TRANSMISSION</span>`;
         submitBtn.style.background = "";
         submitBtn.style.color = "";
       }, 500);

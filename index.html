@@ -155,16 +155,19 @@
       <div class="about-grid">
         <!-- Floating Levitating Sorceress Avatar Card -->
         <div class="avatar-levitate-stage">
-          <div class="avatar-card-wrapper">
+          <div class="avatar-card-wrapper" id="floating-avatar-container">
+            <div class="avatar-magic-ring-outer"></div>
+            <div class="avatar-magic-ring-inner"></div>
+            <canvas class="avatar-sparks-canvas"></canvas>
             <div class="avatar-halo"></div>
             <div class="avatar-portrait-card">
-              <img src="/assets/avatar_meditating.jpg" alt="Binethma's Sorceress Avatar in Meditation" />
+              <img src="/assets/avatar_meditating.jpg" alt="Binethma's Floating Sorceress Companion" />
               <div class="avatar-card-overlay">
                 <div>
-                  <div class="avatar-badge-title">Master of the Digital Arts</div>
+                  <div class="avatar-badge-title">Multiverse Companion</div>
                   <div class="avatar-badge-role">Binethma Jayawickrama • Sri Lanka</div>
                 </div>
-                <button class="interactive-whisper-btn" id="avatar-whisper-btn" title="Listen to Sorceress Whisper">
+                <button class="interactive-whisper-btn" id="avatar-whisper-btn" title="Summon Companion Magic">
                   ✨
                 </button>
               </div>
@@ -258,6 +261,19 @@
       </div>
     </div>
   </section>
+
+  <!-- ==========================================================================
+       PEEKING SORCERESS AVATAR COMPANION (Instruction #3)
+       ========================================================================== -->
+  <div class="peeking-avatar-section">
+    <div class="peeking-avatar-container" id="peeking-avatar-container" title="A playful multiverse companion observing your journey!">
+      <div class="peeking-ledge"></div>
+      <div class="peeking-wrapper">
+        <div class="peeking-sparks"></div>
+        <img src="/assets/avatar_peeking.jpg" alt="Peeking Sorceress Avatar" class="peeking-img" />
+      </div>
+    </div>
+  </div>
 
   <!-- ==========================================================================
        PROJECTS - MULTIVERSE DIMENSIONS
@@ -401,28 +417,28 @@
         <!-- Transmission Form -->
         <form class="gateway-form" id="gateway-form">
           <div class="form-group">
-            <label for="contact-name">TRAVELLER NAME / ENTITY</label>
-            <input type="text" id="contact-name" class="form-input" placeholder="e.g. Stephen Strange" required />
+            <label for="contact-name">YOUR NAME / ORGANIZATION</label>
+            <input type="text" id="contact-name" class="form-input" placeholder="e.g. Alex Vance, Horizon Labs" required />
           </div>
 
           <div class="form-group">
             <label for="contact-email">COMMUNICATION FREQUENCY (EMAIL)</label>
-            <input type="email" id="contact-email" class="form-input" placeholder="e.g. strange@kamar-taj.org" required />
+            <input type="email" id="contact-email" class="form-input" placeholder="e.g. contact@example.com" required />
           </div>
 
           <div class="form-group">
-            <label for="contact-subject">DIMENSIONAL PURPOSE (SUBJECT)</label>
+            <label for="contact-subject">COLLABORATION FOCUS (SUBJECT)</label>
             <input type="text" id="contact-subject" class="form-input" placeholder="e.g. Full-Stack / IoT Project Collaboration" required />
           </div>
 
           <div class="form-group">
             <label for="contact-message">TRANSMISSION MESSAGE</label>
-            <textarea id="contact-message" class="form-textarea" placeholder="Detail your project scope, vision, or interdimensional inquiries..." required></textarea>
+            <textarea id="contact-message" class="form-textarea" placeholder="Detail your project scope, engineering challenges, or internship inquiries..." required></textarea>
           </div>
 
           <button type="submit" class="btn-transmit" id="btn-transmit">
             <span>⚡</span>
-            <span>DISPATCH TRANSMISSION SPELL</span>
+            <span>DISPATCH TRANSMISSION</span>
           </button>
         </form>
       </div>
@@ -436,10 +452,10 @@
     <div class="content-container footer-inner">
       <div class="nav-sling-ring" style="width: 36px; height: 36px;"></div>
       <p class="footer-quote">
-        "We never lose our demons, Mordo. We only learn to live above them — and write clean, resilient code."
+        "Building resilient software and interconnected IoT ecosystems across modern digital dimensions."
       </p>
       <p class="footer-copy">
-        Crafted with Doctor Strange Eldritch Energy by <strong>Binethma Jayawickrama</strong> © 2026. All Universes Protected.
+        Crafted with Multiverse Aesthetics by <strong>Binethma Jayawickrama</strong> © 2026. All Rights Reserved.
       </p>
     </div>
   </footer>

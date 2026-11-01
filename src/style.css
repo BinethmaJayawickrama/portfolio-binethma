@@ -564,7 +564,42 @@ h1, h2, h3, .mystic-heading {
   position: relative;
   width: 100%;
   max-width: 420px;
-  animation: levitate 5s ease-in-out infinite;
+}
+
+.avatar-magic-ring-outer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 480px;
+  height: 480px;
+  transform: translate(-50%, -50%);
+  border: 2px dashed rgba(255, 190, 11, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 25px rgba(255, 119, 0, 0.25);
+  z-index: 1;
+}
+
+.avatar-magic-ring-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 440px;
+  height: 440px;
+  transform: translate(-50%, -50%);
+  border: 1.5px dotted rgba(255, 119, 0, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.avatar-sparks-canvas {
+  position: absolute;
+  inset: -30px;
+  width: calc(100% + 60px);
+  height: calc(100% + 60px);
+  pointer-events: none;
+  z-index: 2;
 }
 
 .avatar-halo {
@@ -577,6 +612,7 @@ h1, h2, h3, .mystic-heading {
   border-radius: 50%;
   background: radial-gradient(circle, var(--portal-glow) 0%, transparent 70%);
   pointer-events: none;
+  z-index: 1;
 }
 
 .avatar-portrait-card {
@@ -586,6 +622,7 @@ h1, h2, h3, .mystic-heading {
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-mystic);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 119, 0, 0.2);
+  z-index: 3;
 }
 
 .avatar-portrait-card img {
@@ -869,6 +906,74 @@ h1, h2, h3, .mystic-heading {
   border-radius: 9999px;
   box-shadow: 0 0 10px var(--portal-gold);
   transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   PEEKING AVATAR STYLES
+   ========================================================================== */
+.peeking-avatar-section {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 1rem auto -2rem;
+  max-width: 1200px;
+  height: 170px;
+  overflow: hidden;
+  z-index: 25;
+}
+
+.peeking-avatar-container {
+  position: relative;
+  width: 260px;
+  height: 170px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+.peeking-ledge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent 0%, var(--portal-gold) 50%, transparent 100%);
+  box-shadow: 0 0 16px var(--portal-glow);
+  z-index: 5;
+}
+
+.peeking-wrapper {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  border-radius: 50% 50% 0 0;
+  overflow: hidden;
+  transform-origin: bottom center;
+  will-change: transform;
+  border-top: 2px solid var(--border-mystic);
+  border-left: 2px solid var(--border-mystic);
+  border-right: 2px solid var(--border-mystic);
+  box-shadow: 0 -10px 30px rgba(255, 119, 0, 0.2);
+}
+
+.peeking-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.peeking-sparks {
+  position: absolute;
+  inset: 0;
+  border-radius: 50% 50% 0 0;
+  border-top: 2px dashed var(--portal-gold);
+  opacity: 0.3;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 /* ==========================================================================
