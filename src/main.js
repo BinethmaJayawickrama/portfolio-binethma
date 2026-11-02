@@ -435,6 +435,38 @@ function setupNavigation() {
       portalTransition.transitionTo(targetId);
     });
   });
+
+  // URL hash support on initial page load
+  const currentHash = window.location.hash.replace("#", "");
+  if (currentHash) {
+    const targetSection = (currentHash === "projects") ? "dimensions" : currentHash;
+    const matchedLink = document.querySelector(`.nav-links a[href="#${targetSection}"]`) ||
+                        document.querySelector(`.nav-links a[href="#${currentHash}"]`);
+    if (matchedLink) {
+      links.forEach(l => l.classList.remove("active"));
+      matchedLink.classList.add("active");
+    }
+  }
+
+  // Active section scroll spy
+  const sections = document.querySelectorAll("section[id]");
+  const spyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute("id");
+        links.forEach(l => {
+          const href = l.getAttribute("href");
+          if (href === `#${id}` || (id === "dimensions" && href === "#projects")) {
+            l.classList.add("active");
+          } else {
+            l.classList.remove("active");
+          }
+        });
+      }
+    });
+  }, { rootMargin: "-30% 0px -50% 0px" });
+
+  sections.forEach(s => spyObserver.observe(s));
 }
 
 // Hero Actions & Avatar Portal Trigger (Instruction #4)

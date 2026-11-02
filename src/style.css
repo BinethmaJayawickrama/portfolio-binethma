@@ -101,6 +101,12 @@ body {
   padding: 0 1.5rem;
 }
 
+section[id], .section-padding {
+  padding: 6rem 0;
+  scroll-margin-top: 90px;
+  position: relative;
+}
+
 /* Typography Utilities */
 h1, h2, h3, .mystic-heading {
   font-family: var(--font-mystic);
@@ -514,8 +520,10 @@ h1, h2, h3, .mystic-heading {
 .section-padding {
   padding: 6.5rem 0;
   position: relative;
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 700px;
+}
+
+section[id] {
+  scroll-margin-top: 100px;
 }
 
 .section-header {

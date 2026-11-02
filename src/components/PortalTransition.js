@@ -169,9 +169,12 @@ export class PortalTransition {
       soundFx.playSpellChime(640);
       if (onMidpoint) onMidpoint();
 
-      const target = document.getElementById(targetSectionId);
+      const target = document.getElementById(targetSectionId) ||
+                     (targetSectionId === "projects" ? document.getElementById("dimensions") : null);
       if (target) {
-        target.scrollIntoView({ behavior: "auto" });
+        const navHeight = 85;
+        const targetPos = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+        window.scrollTo({ top: Math.max(0, targetPos), behavior: "instant" });
       }
     });
 
