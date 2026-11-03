@@ -89,7 +89,7 @@ export class SorceressAvatarController {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
+          if (entry.isIntersecting) {
             const sectionId = entry.target.id;
             if (this.currentSection !== sectionId && this.sectionDialogues[sectionId]) {
               this.currentSection = sectionId;
@@ -99,7 +99,7 @@ export class SorceressAvatarController {
           }
         });
       },
-      { threshold: [0.3, 0.6] }
+      { rootMargin: "-25% 0px -40% 0px" }
     );
 
     sections.forEach((s) => observer.observe(s));
