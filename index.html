@@ -148,8 +148,97 @@
       const tex = {};
       const param = () => { gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR); };
       gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
-      const load = name => new Promise(res => { const i = new Image(); i.crossOrigin = 'anonymous'; i.onload = () => res(i); i.onerror = () => res(null); i.src = url(IDS[name]); });
-      function upload(name, img) { const t = gl.createTexture(); gl.activeTexture(gl.TEXTURE5); gl.bindTexture(gl.TEXTURE_2D, t); gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img); param(); tex[name] = t; }
+
+      const ASSET_MAP = {
+        rest: '/assets/avatar_tan_curly.jpg',
+        closed: '/assets/avatar_tan_curly_blink.jpg',
+        half: '/assets/avatar_tan_curly_blink.jpg',
+        snore: '/assets/avatar_tan_curly_blink.jpg',
+        doze: '/assets/avatar_tan_curly_blink.jpg',
+        right: '/assets/avatar_tan_curly_right.jpg',
+        ene: '/assets/avatar_tan_curly_right.jpg',
+        ese: '/assets/avatar_tan_curly_right.jpg',
+        left: '/assets/avatar_tan_curly_left.jpg',
+        wnw: '/assets/avatar_tan_curly_left.jpg',
+        wsw: '/assets/avatar_tan_curly_left.jpg',
+        up: '/assets/avatar_tan_curly_up.jpg',
+        nne: '/assets/avatar_tan_curly_up.jpg',
+        nnw: '/assets/avatar_tan_curly_up.jpg',
+        upright: '/assets/avatar_tan_curly_up.jpg',
+        down: '/assets/avatar_tan_curly_down.jpg',
+        sse: '/assets/avatar_tan_curly_down.jpg',
+        ssw: '/assets/avatar_tan_curly_down.jpg',
+        downleft: '/assets/avatar_tan_curly_down.jpg',
+        downright: '/assets/avatar_tan_curly_down.jpg',
+        kiss: '/assets/avatar_tan_curly_kiss.jpg',
+        tongue: '/assets/avatar_tan_curly_tongue.jpg',
+        winkr: '/assets/avatar_tan_curly_wink.jpg',
+        winkl: '/assets/avatar_tan_curly_wink.jpg',
+        hearts: '/assets/avatar_tan_curly_wink.jpg',
+        grin: '/assets/avatar_tan_curly_wink.jpg',
+        laugh: '/assets/avatar_tan_curly_wink.jpg',
+        pink: '/assets/avatar_tan_curly_pink.jpg',
+        blue: '/assets/avatar_tan_curly_blue.jpg',
+        blonde: '/assets/avatar_tan_curly_blue.jpg',
+        cross: '/assets/avatar_tan_curly_wink.jpg',
+        angry: '/assets/avatar_tan_curly_kiss.jpg',
+        shock: '/assets/avatar_tan_curly_up.jpg',
+        scared: '/assets/avatar_tan_curly_up.jpg',
+        dizzy: '/assets/avatar_tan_curly_wink.jpg',
+        puff: '/assets/avatar_tan_curly_kiss.jpg',
+        smug: '/assets/avatar_tan_curly_wink.jpg',
+        yawn: '/assets/avatar_tan_curly_down.jpg',
+        yawn1: '/assets/avatar_tan_curly_down.jpg',
+        yawn2: '/assets/avatar_tan_curly_down.jpg',
+        yawn4: '/assets/avatar_tan_curly_down.jpg',
+        sneeze1: '/assets/avatar_tan_curly_blink.jpg',
+        sneeze2: '/assets/avatar_tan_curly_blink.jpg',
+        whistle1: '/assets/avatar_tan_curly_kiss.jpg',
+        whistle2: '/assets/avatar_tan_curly_kiss.jpg',
+        gum1: '/assets/avatar_tan_curly_kiss.jpg',
+        gum2: '/assets/avatar_tan_curly_kiss.jpg',
+        gum3: '/assets/avatar_tan_curly_kiss.jpg',
+        gumpop: '/assets/avatar_tan_curly_blink.jpg',
+        stars: '/assets/avatar_tan_curly_wink.jpg',
+        shy: '/assets/avatar_tan_curly_down.jpg',
+        sick: '/assets/avatar_tan_curly_down.jpg',
+        deadpan: '/assets/avatar_tan_curly.jpg',
+        raised: '/assets/avatar_tan_curly_up.jpg',
+        ouch: '/assets/avatar_tan_curly_blink.jpg',
+        cry: '/assets/avatar_tan_curly_down.jpg',
+        fish: '/assets/avatar_tan_curly_kiss.jpg',
+        wind: '/assets/avatar_tan_curly.jpg',
+      };
+
+      const imageCache = {};
+      const texCache = {};
+      const load = name => new Promise(res => {
+        const src = ASSET_MAP[name] || '/assets/avatar_tan_curly.jpg';
+        if (imageCache[src]) {
+          res({ img: imageCache[src], src });
+          return;
+        }
+        const i = new Image();
+        i.onload = () => {
+          imageCache[src] = i;
+          res({ img: i, src });
+        };
+        i.onerror = () => res(null);
+        i.src = src;
+      });
+      function upload(name, img, src) {
+        if (src && texCache[src]) {
+          tex[name] = texCache[src];
+          return;
+        }
+        const t = gl.createTexture();
+        gl.activeTexture(gl.TEXTURE5);
+        gl.bindTexture(gl.TEXTURE_2D, t);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+        param();
+        if (src) texCache[src] = t;
+        tex[name] = t;
+      }
 
       function hitMap(img) {
         const a = document.createElement('canvas'); a.width = a.height = 128;
@@ -182,14 +271,14 @@
         tap: {brow: 'angry', eyeL: 'ouch', eyeR: 'ouch', nose: 'act:sneeze', mouth: 'tongue', cheek: 'puff', chin: 'laugh'}
       };
       const zoneAt = (u, v) => {
-        const a = (u - .505) / .225, b = (v - .485) / .33;
-        if (a * a + b * b > 1 || v < .23) return 'hair';
-        if (v < .385) return 'brow';
-        if (Math.abs(v - .455) < .05 && u > .33 && u < .455) return 'eyeL';
-        if (Math.abs(v - .455) < .05 && u > .545 && u < .67) return 'eyeR';
-        if (Math.abs(u - .5) < .055 && v < .6) return 'nose';
-        if (v > .6 && v < .71 && Math.abs(u - .5) < .1) return 'mouth';
-        return v > .71 ? 'chin' : 'cheek';
+        const a = (u - .50) / .26, b = (v - .46) / .32;
+        if (a * a + b * b > 1 || v < .27) return 'hair';
+        if (v < .34) return 'brow';
+        if (Math.abs(v - .38) < .06 && u >= .30 && u <= .48) return 'eyeL';
+        if (Math.abs(v - .38) < .06 && u >= .52 && u <= .70) return 'eyeR';
+        if (Math.abs(u - .50) < .07 && v >= .44 && v < .55) return 'nose';
+        if (v >= .55 && v <= .66 && Math.abs(u - .50) < .13) return 'mouth';
+        return v > .66 ? 'chin' : 'cheek';
       };
 
       // state
@@ -208,6 +297,12 @@
       const fileOf = cell => cell === 'rest' ? 'rest' : EYEFILE[cell];
       const setFace = (n, ms) => { logical = n; logicalMs = ms; };
       const setEye = (cell, ms) => { if (tex[fileOf(cell)]) { eyeNow = cell; eyeNowMs = ms; } };
+
+      window.__faceTrigger = {
+        setFace, setEye, startAct,
+        setMood: (name, ms = 1500) => { moodFace = name; moodUntil = performance.now() + ms; },
+        hairCycle: () => { hairI = (hairI + 1) >= HAIRS.length ? -1 : hairI + 1; }
+      };
       // one picture on screen at a time, always
       function show(n, ms, now) {
         if (!tex[n] || n === faceB) return;
@@ -269,7 +364,13 @@
 
       // ---- input ----
       const toUv = (x, y) => { const r = canvas.getBoundingClientRect(); return [((x - r.left) / r.width - .5) * OVER + .5, ((y - r.top) / r.height - .5) * OVER + .5]; };
-      const solid = (u, v) => alphaMap && u >= 0 && v >= 0 && u < 1 && v < 1 && alphaMap[((v * 128 | 0) * 128 + (u * 128 | 0)) * 4 + 3] > 40;
+      const solid = (u, v) => {
+        if (u < 0.08 || v < 0.08 || u > 0.92 || v > 0.92) return false;
+        if (u >= 0.15 && u <= 0.85 && v >= 0.10 && v <= 0.90) return true;
+        if (!alphaMap) return true;
+        const idx = ((v * 128 | 0) * 128 + (u * 128 | 0)) * 4;
+        return (alphaMap[idx] + alphaMap[idx + 1] + alphaMap[idx + 2]) > 20;
+      };
       function wake(now) { lastInput = now; if (!awake) { awake = true; nextBlink = now + 1600; setEye('half', 90, now); setTimeout(() => awake && setEye('rest', 100, performance.now()), 110); } nextIdle = 30000 + Math.random() * 15000; }
 
       addEventListener('pointermove', e => {
@@ -295,16 +396,31 @@
         const now = performance.now(), [u, v] = toUv(e.clientX, e.clientY);
         if (!solid(u, v)) return;
         wake(now); endAct(); pressed = true; downAt = now; downU = u; downV = v; takeHold(u, v);
-        moodFace = null; wrap.setPointerCapture(e.pointerId); e.preventDefault();
+        moodFace = null;
+        if (wrap.setPointerCapture && e.pointerId) {
+          try { wrap.setPointerCapture(e.pointerId); } catch (_) {}
+        }
+        e.preventDefault();
       });
-      function release() {
+      function release(e) {
         if (!pressed) return;
-        const now = performance.now(), L = Math.hypot(brush.px, brush.py), z = zoneAt(downU, downV), held = now - downAt;
+        const now = performance.now(), L = brush ? Math.hypot(brush.px, brush.py) : 0, z = zoneAt(downU, downV), held = now - downAt;
         pressed = false; brush = null; wrap.style.cursor = onHead ? 'grab' : '';
+        if (e && e.pointerId && wrap.releasePointerCapture) {
+          try { wrap.releasePointerCapture(e.pointerId); } catch (_) {}
+        }
         pulls = pulls.filter(t => now - t < 14000);
-        if (L < .03 && held < 380) {             // a tap
-          if (z === 'hair') hairI = hairI + 1 >= HAIRS.length ? -1 : hairI + 1;
-          else { const r = ZONES.tap[z]; if (r.startsWith('act:')) startAct(r.slice(4), now); else { moodFace = r; moodUntil = now + 1100; } poke(downU, downV, 0, .5, .06); }
+        if (L < .08 && held < 600) {             // a tap
+          if (z === 'hair') {
+            hairI = hairI + 1 >= HAIRS.length ? -1 : hairI + 1;
+          } else {
+            const r = ZONES.tap[z];
+            if (r) {
+              if (r.startsWith('act:')) startAct(r.slice(4), now);
+              else { moodFace = r; moodUntil = now + 1400; }
+              poke(downU, downV, 0, .5, .06);
+            }
+          }
           return;
         }
         pulls.push(now);
@@ -312,7 +428,12 @@
         moodFace = n >= 8 ? 'cry' : n >= 5 ? 'angry' : L > .22 ? 'dizzy' : L > .1 ? 'scrunch' : 'deadpan';
         moodUntil = now + (n >= 5 ? 2600 : 700 + L * 2800);
       }
-      addEventListener('pointerup', release); addEventListener('pointercancel', release);
+      wrap.addEventListener('pointerup', release);
+      wrap.addEventListener('mouseup', release);
+      addEventListener('pointerup', release);
+      addEventListener('mouseup', release);
+      addEventListener('pointercancel', release);
+      addEventListener('touchend', release);
       addEventListener('pointerleave', () => { zone = null; });
       document.querySelectorAll('.contact-btn').forEach(b => {
         b.addEventListener('pointerenter', () => { moodFace = 'hearts'; moodUntil = performance.now() + 1e7; });
@@ -417,16 +538,18 @@
       }
 
       (async () => {
-        const base = await load('rest');
-        if (!base) return;
-        upload('rest', base); hitMap(base);
-        document.getElementById('faceFallback').style.visibility = 'hidden';
+        const baseRes = await load('rest');
+        if (!baseRes || !baseRes.img) return;
+        upload('rest', baseRes.img, baseRes.src); hitMap(baseRes.img);
+        const fb = document.getElementById('faceFallback');
+        if (fb) fb.style.visibility = 'hidden';
         ready = true; tStart = performance.now(); requestAnimationFrame(frame);
-        const take = async n => { const img = await load(n); if (img) upload(n, img); };
+        const take = async n => { const res = await load(n); if (res && res.img) upload(n, res.img, res.src); };
         await take('closed'); await take('half');
-        const names = Object.keys(IDS).filter(n => !['rest', 'closed', 'half'].includes(n));
+        const allKeys = Array.from(new Set([...Object.keys(IDS), ...Object.keys(ASSET_MAP)]));
+        const names = allKeys.filter(n => !['rest', 'closed', 'half'].includes(n));
         let i = 0;
-        await Promise.all(Array.from({length: 6}, async () => { while (i < names.length) await take(names[i++]); }));
+        await Promise.all(Array.from({length: 8}, async () => { while (i < names.length) await take(names[i++]); }));
       })();
     }
 
