@@ -40,7 +40,7 @@ export const HeroSection: React.FC = () => {
       <div className="w-full overflow-hidden text-center z-0 flex justify-center items-center">
         <FadeIn delay={0.15} y={40} duration={0.8} className="w-full">
           <h1 className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-[14vw] sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw] mt-6 sm:mt-4 md:-mt-5 select-none">
-            Hi, i&apos;m mina
+            Hi, i&apos;m bine
           </h1>
         </FadeIn>
       </div>
@@ -61,10 +61,10 @@ export const HeroSection: React.FC = () => {
           >
             <img
               id="faceFallback"
-              src="/assets/avatar_tan_curly.jpg"
-              alt="Mina - 3D Creator Portrait"
+              src="/assets/avatar_tan_curly.png"
+              alt="Bine - 3D Creator Portrait"
               draggable={false}
-              className="rounded-3xl shadow-2xl"
+              className="rounded-3xl"
             />
             <canvas id="faceGl" aria-hidden="true"></canvas>
             <div id="faceProps" aria-hidden="true">
