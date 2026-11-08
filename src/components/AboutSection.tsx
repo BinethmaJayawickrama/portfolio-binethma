@@ -35,25 +35,25 @@ export const AboutSection: React.FC = () => {
         {/* Gap between text block and buttons */}
         <div className="h-10 sm:h-12 md:h-14 w-full" />
 
-        {/* Action Buttons from uploaded reference */}
+        {/* Action Buttons styled to match website theme */}
         <FadeIn delay={0.2} y={20} duration={0.6}>
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5">
-            {/* View Projects Button */}
+            {/* View Projects Button - Signature Magenta/Purple Gradient */}
             <a
               href="#projects"
-              className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 sm:px-8 sm:py-4 bg-[#F8BF15] hover:bg-[#E5AE0F] text-[#0C0C0C] font-semibold text-base sm:text-lg rounded-2xl shadow-lg hover:shadow-xl hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 cursor-pointer select-none"
+              className="group contact-button-style inline-flex items-center justify-center gap-2.5 px-8 py-3.5 sm:px-9 sm:py-4 text-white font-semibold text-base sm:text-lg rounded-2xl hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer select-none"
             >
               <span>View Projects</span>
               <ArrowDown className="w-5 h-5 transition-transform duration-200 group-hover:translate-y-0.5" strokeWidth={2.2} />
             </a>
 
-            {/* Download CV Button */}
+            {/* Download CV Button - Obsidian & Chrome Silver Border */}
             <a
               href="/assets/cv.pdf"
               download="Bine_CV.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 sm:px-8 sm:py-4 bg-white hover:bg-neutral-100 text-[#0C0C0C] font-semibold text-base sm:text-lg rounded-2xl border border-neutral-200 shadow-lg hover:shadow-xl hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 cursor-pointer select-none"
+              className="group inline-flex items-center justify-center gap-2.5 px-8 py-3.5 sm:px-9 sm:py-4 bg-[#141414]/90 hover:bg-[#1F1F1F] text-[#D7E2EA] hover:text-white font-semibold text-base sm:text-lg rounded-2xl border-2 border-[#D7E2EA] hover:border-white shadow-[0_4px_16px_rgba(0,0,0,0.5)] hover:shadow-[0_4px_20px_rgba(215,226,234,0.15)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer select-none backdrop-blur-sm"
             >
               <span>Download CV</span>
               <Download className="w-5 h-5 transition-transform duration-200 group-hover:translate-y-0.5" strokeWidth={2.2} />

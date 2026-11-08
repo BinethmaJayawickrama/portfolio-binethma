@@ -19,7 +19,7 @@ export const HeroSection: React.FC = () => {
             href="#services"
             className="hover:opacity-70 transition-opacity duration-200"
           >
-            Price
+            Skills
           </a>
           <a
             href="#projects"
