@@ -6,45 +6,87 @@ import { FadeIn } from './FadeIn';
 interface ProjectData {
   number: string;
   name: string;
+  subtitle: string;
   category: string;
-  col1Img1: string;
-  col1Img2: string;
-  col2Img: string;
+  year: string;
+  description: string;
+  techStack: string[];
+  link: string;
+  image: string;
 }
 
 const PROJECTS: ProjectData[] = [
   {
     number: '01',
-    name: 'Nextlevel Studio',
-    category: 'Client',
-    col1Img1:
-      'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055344_5eff02e0-87a5-41ce-b64f-eb08da8f33db.png&w=1280&q=85',
-    col1Img2:
-      'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055431_11d841fd-8b41-46a5-82e4-b04f2407a7d8.png&w=1280&q=85',
-    col2Img:
-      'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055451_e317bf2d-28d4-48cc-86b0-6f72f25b6327.png&w=1280&q=85',
+    name: 'Adorix',
+    subtitle: 'AI-Powered Conversational Sales Kiosk',
+    category: 'AI & Computer Vision',
+    year: '2025 – 2026',
+    link: 'https://github.com/ADORIX000',
+    description:
+      'Developed an AI kiosk that detects shoppers and displays targeted video ads in real time. Integrated face tracking and age/gender detection with a voice-activated chatbot for customer Q&A.',
+    techStack: ['Python', 'OpenCV', 'FastAPI', 'React.js', 'Tailwind CSS', 'WebSockets', 'Supabase'],
+    image: '/assets/project_adorix.jpg',
   },
   {
     number: '02',
-    name: 'Aura Brand Identity',
-    category: 'Personal',
-    col1Img1:
-      'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055654_911201c5-36d9-4bc6-bac7-331adfce159f.png&w=1280&q=85',
-    col1Img2:
-      'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055723_5ceda0b8-d9c2-4665-b2e3-83ba19ba76d1.png&w=1280&q=85',
-    col2Img:
-      'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055753_adc5dcbd-a8e6-49c0-b43a-9b030d835cea.png&w=1280&q=85',
+    name: 'Smart Tail Pod',
+    subtitle: 'IoT-Based Cattle Heat Detection System',
+    category: 'IoT & Embedded Systems',
+    year: '2026 – Ongoing',
+    link: '#contact',
+    description:
+      'Developing a smart IoT device to detect heat signs in cattle for better artificial insemination timing. Building a wearable sensor system to monitor cattle activity and temperature, paired with mobile and web monitoring apps.',
+    techStack: ['ESP32', 'IoT Sensors', 'Python', 'React.js', 'Firebase', 'JavaScript'],
+    image: '/assets/project_cattle.jpg',
   },
   {
     number: '03',
-    name: 'Solaris Digital',
-    category: 'Client',
-    col1Img1:
-      'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055759_963cfb0b-4bd1-4b0f-9d0a-09bd6cf95b2f.png&w=1280&q=85',
-    col1Img2:
-      'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_060108_438f781a-9846-4dcc-89ab-c4e6cb830f5b.png&w=1280&q=85',
-    col2Img:
-      'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055818_9d062121-ad7e-46b9-999a-1a6a692ef1ee.png&w=1280&q=85',
+    name: 'TeamFlow',
+    subtitle: 'Role-Based Workspace Collaboration Platform',
+    category: 'Full-Stack Web Platform',
+    year: '2026',
+    link: 'https://github.com/BinethmaJayawickrama/TeamFlow-Project',
+    description:
+      'Developed a full-stack project and task management platform featuring role-based dashboards (Admin, Project Manager, Team Collaborator) and workspace segregation with real-time socket notification channels.',
+    techStack: ['Next.js', 'Express.js', 'Prisma ORM', 'PostgreSQL', 'Socket.io', 'Tailwind CSS', 'WebSockets', 'JWT Auth'],
+    image: '/assets/project_teamflow.jpg',
+  },
+  {
+    number: '04',
+    name: 'ApexFled',
+    subtitle: 'Premium Digital E-Commerce & Account Store',
+    category: 'Full-Stack E-Commerce',
+    year: '2026',
+    link: 'https://github.com/SithikaWeerasinghe/digital-account-store',
+    description:
+      'Developed a high-performance e-commerce platform with automated instant digital delivery and custom cart management. Engineered full-stack reviews, ticketing, and a secure Supabase admin dashboard bypassing RLS safely.',
+    techStack: ['Next.js (App Router)', 'React.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'REST APIs'],
+    image: '/assets/project_apexfled.jpg',
+  },
+  {
+    number: '05',
+    name: 'Vision Brightness Sync',
+    subtitle: 'AI-Powered Gesture Brightness Controller',
+    category: 'Computer Vision & AI Utility',
+    year: '2026',
+    link: 'https://github.com/BinethmaJayawickrama/vision-brightness-sync',
+    description:
+      'Built a high-performance Windows system utility utilizing computer vision to dynamically control screen brightness via hand gestures. Implemented distance-independent tracking using hand-pose estimation with edge-snapping optimizations.',
+    techStack: ['Python 3.12', 'MediaPipe', 'OpenCV', 'NumPy', 'screen-brightness-control'],
+    image: '/assets/project_visionsync.jpg',
+  },
+  {
+    number: '06',
+    name: 'WordSearch App',
+    subtitle: 'Interactive Mobile Puzzle Game',
+    category: 'Mobile Application',
+    year: '2026',
+    link: 'https://github.com/BinethmaJayawickrama/word_search_app',
+    description:
+      'Developed a multi-level puzzle game with a dynamic grid generator for infinite replayability. Implemented smooth touch-drag selection logic, a tiered difficulty system (Easy to Hard), and real-time timers with star-based scoring.',
+    techStack: ['Flutter', 'Dart', 'Material 3', 'Android SDK', 'Git'],
+    image: '/assets/project_wordsearch.jpg',
   },
 ];
 
@@ -59,85 +101,92 @@ const ProjectCard: React.FC<{
     offset: ['start end', 'start start'],
   });
 
-  const targetScale = 1 - (totalCards - 1 - index) * 0.03;
+  const targetScale = 1 - (totalCards - 1 - index) * 0.02;
   const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);
 
   return (
     <div
       ref={containerRef}
-      className="h-[85vh] flex items-start justify-center sticky top-24 md:top-32 w-full"
+      className="min-h-[85vh] flex items-start justify-center sticky w-full mb-10 sm:mb-16"
       style={{
-        top: `calc(${index * 28}px + 6rem)`,
+        top: `calc(${index * 22}px + 5.5rem)`,
       }}
     >
       <motion.div
-        style={{
-          scale,
-        }}
-        className="w-full max-w-6xl bg-[#0C0C0C] border-2 border-[#D7E2EA] rounded-[40px] sm:rounded-[50px] md:rounded-[60px] p-4 sm:p-6 md:p-8 flex flex-col justify-between shadow-2xl overflow-hidden"
+        style={{ scale }}
+        className="w-full max-w-6xl bg-[#0C0C0C] border-2 border-[#D7E2EA] rounded-[36px] sm:rounded-[48px] md:rounded-[56px] p-5 sm:p-7 md:p-9 flex flex-col justify-between shadow-2xl overflow-hidden backdrop-blur-xl"
       >
-        {/* Top Row: Number, Category, Name, Live Project Button */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pb-6 md:pb-8 border-b border-[#D7E2EA]/20">
-          <div className="flex items-center gap-4 sm:gap-6 md:gap-8 flex-wrap">
-            {/* Number */}
-            <span className="font-black text-4xl sm:text-6xl md:text-7xl text-[#D7E2EA] leading-none">
+        {/* Top Folder Tab Row: Number, Meta, Name, Action Button */}
+        <div className="flex flex-wrap items-center justify-between gap-4 pb-5 md:pb-6 border-b border-[#D7E2EA]/20">
+          <div className="flex items-center gap-4 sm:gap-6 flex-wrap">
+            {/* Folder Number */}
+            <span className="font-black text-4xl sm:text-5xl md:text-6xl text-[#D7E2EA] leading-none shrink-0">
               {project.number}
             </span>
 
-            {/* Category + Name */}
+            {/* Category, Year & Name */}
             <div className="flex flex-col">
-              <span className="text-[#D7E2EA]/60 uppercase font-light tracking-widest text-xs sm:text-sm md:text-base">
-                {project.category}
-              </span>
-              <h3 className="text-[#D7E2EA] font-medium uppercase tracking-wide text-lg sm:text-2xl md:text-3xl lg:text-4xl">
+              <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+                <span className="text-[#D7E2EA]/60 uppercase font-light tracking-widest text-xs sm:text-sm">
+                  {project.category}
+                </span>
+                <span className="text-[#D7E2EA]/40 text-xs">•</span>
+                <span className="text-[#D7E2EA]/60 font-light text-xs sm:text-sm">
+                  {project.year}
+                </span>
+              </div>
+              <h3 className="text-[#D7E2EA] font-semibold uppercase tracking-wide text-lg sm:text-2xl md:text-3xl">
                 {project.name}
               </h3>
             </div>
           </div>
 
-          {/* Live Project Button */}
-          <LiveProjectButton />
+          {/* Repository / Project Action Button */}
+          <LiveProjectButton
+            href={project.link}
+            label={project.link.includes('github.com') ? 'GitHub' : 'View Project'}
+          />
         </div>
 
-        {/* Bottom Row: Two-Column Image Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 pt-4 sm:pt-6 w-full items-stretch">
-          {/* Left Column (40% width on md/lg: 5 cols) */}
-          <div className="md:col-span-5 flex flex-col gap-4 sm:gap-6 justify-between">
-            {/* Left Top Image */}
-            <div
-              className="w-full rounded-[40px] sm:rounded-[50px] md:rounded-[60px] overflow-hidden bg-[#181818]"
-              style={{ height: 'clamp(130px, 16vw, 230px)' }}
-            >
-              <img
-                src={project.col1Img1}
-                alt={`${project.name} preview 1`}
-                loading="lazy"
-                className="w-full h-full object-cover rounded-[40px] sm:rounded-[50px] md:rounded-[60px]"
-              />
+        {/* Content Row: Description & Tech Stack (Left) + UI Preview (Right) */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-8 pt-5 sm:pt-6 w-full items-stretch">
+          {/* Left Column: Details & Tech Stack */}
+          <div className="md:col-span-5 flex flex-col justify-between gap-5">
+            <div className="flex flex-col gap-3">
+              <p className="text-sm sm:text-base font-medium text-[#D7E2EA] opacity-90 leading-tight">
+                {project.subtitle}
+              </p>
+              <p className="text-xs sm:text-sm font-light text-[#D7E2EA]/80 leading-relaxed">
+                {project.description}
+              </p>
             </div>
 
-            {/* Left Bottom Image */}
-            <div
-              className="w-full rounded-[40px] sm:rounded-[50px] md:rounded-[60px] overflow-hidden bg-[#181818]"
-              style={{ height: 'clamp(160px, 22vw, 340px)' }}
-            >
-              <img
-                src={project.col1Img2}
-                alt={`${project.name} preview 2`}
-                loading="lazy"
-                className="w-full h-full object-cover rounded-[40px] sm:rounded-[50px] md:rounded-[60px]"
-              />
+            {/* Tech Stack Pills */}
+            <div className="flex flex-col gap-2 pt-2 border-t border-[#D7E2EA]/10">
+              <span className="text-[11px] sm:text-xs uppercase tracking-widest text-[#D7E2EA]/50 font-medium">
+                Technologies Used
+              </span>
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                {project.techStack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] sm:text-xs font-medium bg-white/[0.06] border border-white/10 text-[#D7E2EA] hover:bg-white/15 hover:border-white/20 transition-all duration-200 select-none"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Right Column (60% width on md/lg: 7 cols) */}
+          {/* Right Column: High-Res UI Mockup Showcase */}
           <div className="md:col-span-7 flex flex-col">
-            <div className="w-full h-full min-h-[300px] sm:min-h-[380px] md:min-h-full rounded-[40px] sm:rounded-[50px] md:rounded-[60px] overflow-hidden bg-[#181818]">
+            <div className="w-full h-[240px] sm:h-[300px] md:h-[360px] rounded-[24px] sm:rounded-[32px] md:rounded-[40px] overflow-hidden bg-[#181818] border border-white/10 shadow-inner group/img relative">
               <img
-                src={project.col2Img}
-                alt={`${project.name} preview 3`}
+                src={project.image}
+                alt={`${project.name} preview`}
                 loading="lazy"
-                className="w-full h-full object-cover rounded-[40px] sm:rounded-[50px] md:rounded-[60px]"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105"
               />
             </div>
           </div>
@@ -154,17 +203,17 @@ export const ProjectsSection: React.FC = () => {
       className="bg-[#0C0C0C] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 z-10 relative px-5 sm:px-8 md:px-10 pt-20 pb-16 sm:pb-24 w-full select-none"
     >
       <div className="max-w-6xl mx-auto w-full">
-        {/* Heading: "Project" (singular) */}
+        {/* Section Heading: "Projects" */}
         <FadeIn delay={0} y={40} duration={0.7} className="text-center mb-16 sm:mb-24">
           <h2
             className="hero-heading font-black uppercase text-center leading-none tracking-tight"
             style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
           >
-            Project
+            Projects
           </h2>
         </FadeIn>
 
-        {/* 3 Stacking Cards */}
+        {/* 6 Stacking Folder Cards */}
         <div className="flex flex-col w-full relative">
           {PROJECTS.map((project, index) => (
             <ProjectCard
@@ -179,3 +228,5 @@ export const ProjectsSection: React.FC = () => {
     </section>
   );
 };
+
+export default ProjectsSection;
