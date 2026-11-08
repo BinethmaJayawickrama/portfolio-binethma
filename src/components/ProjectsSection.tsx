@@ -151,7 +151,7 @@ export const ProjectsSection: React.FC = () => {
   return (
     <section
       id="projects"
-      className="bg-[#0C0C0C] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 z-10 relative px-5 sm:px-8 md:px-10 pt-20 pb-40 w-full select-none"
+      className="bg-[#0C0C0C] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 z-10 relative px-5 sm:px-8 md:px-10 pt-20 pb-16 sm:pb-24 w-full select-none"
     >
       <div className="max-w-6xl mx-auto w-full">
         {/* Heading: "Project" (singular) */}

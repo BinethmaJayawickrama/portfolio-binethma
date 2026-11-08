@@ -5,7 +5,7 @@ import { FadeIn } from './FadeIn';
 
 export const HeroSection: React.FC = () => {
   return (
-    <section className="relative h-screen w-full flex flex-col justify-between overflow-x-clip select-none bg-[#0C0C0C]">
+    <section className="relative h-screen w-full flex flex-col justify-between overflow-hidden select-none bg-[#0C0C0C]">
       {/* 1. Navbar */}
       <FadeIn delay={0} y={-20} duration={0.6}>
         <nav className="w-full flex items-center justify-between px-6 md:px-10 pt-6 md:pt-8 text-[#D7E2EA] font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.4rem] z-20 relative">

@@ -1,59 +1,14 @@
 import React from 'react';
 import { FadeIn } from './FadeIn';
 import { AnimatedText } from './AnimatedText';
-import { ContactButton } from './ContactButton';
+import { ArrowDown, Download } from 'lucide-react';
 
 export const AboutSection: React.FC = () => {
   return (
     <section
       id="about"
-      className="relative min-h-screen w-full flex flex-col items-center justify-center px-5 sm:px-8 md:px-10 py-20 bg-[#0C0C0C] overflow-hidden select-none"
+      className="relative min-h-screen w-full flex flex-col items-center justify-center px-5 sm:px-8 md:px-10 pt-14 sm:pt-20 md:pt-24 pb-16 sm:pb-20 bg-[#0C0C0C] overflow-hidden select-none"
     >
-      {/* Decorative 3D elements in corners */}
-      {/* 1. Top-Left: Moon icon */}
-      <div className="absolute top-[4%] left-[1%] sm:left-[2%] md:left-[4%] pointer-events-none z-0">
-        <FadeIn delay={0.1} x={-80} y={0} duration={0.9}>
-          <img
-            src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/moon_icon.11395d36.png"
-            alt="Moon 3D Decor"
-            className="w-[120px] sm:w-[160px] md:w-[210px] h-auto object-contain select-none"
-          />
-        </FadeIn>
-      </div>
-
-      {/* 2. Bottom-Left: 3D Object */}
-      <div className="absolute bottom-[8%] left-[3%] sm:left-[6%] md:left-[10%] pointer-events-none z-0">
-        <FadeIn delay={0.25} x={-80} y={0} duration={0.9}>
-          <img
-            src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/p59_1.4659672e.png"
-            alt="3D Shape Decor"
-            className="w-[100px] sm:w-[140px] md:w-[180px] h-auto object-contain select-none"
-          />
-        </FadeIn>
-      </div>
-
-      {/* 3. Top-Right: Lego icon */}
-      <div className="absolute top-[4%] right-[1%] sm:right-[2%] md:right-[4%] pointer-events-none z-0">
-        <FadeIn delay={0.15} x={80} y={0} duration={0.9}>
-          <img
-            src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/lego_icon-1.703bb594.png"
-            alt="Lego 3D Decor"
-            className="w-[120px] sm:w-[160px] md:w-[210px] h-auto object-contain select-none"
-          />
-        </FadeIn>
-      </div>
-
-      {/* 4. Bottom-Right: 3D Group */}
-      <div className="absolute bottom-[8%] right-[3%] sm:right-[6%] md:right-[10%] pointer-events-none z-0">
-        <FadeIn delay={0.3} x={80} y={0} duration={0.9}>
-          <img
-            src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/Group_134-1.2e04f3ce.png"
-            alt="3D Floating Shapes Decor"
-            className="w-[130px] sm:w-[170px] md:w-[220px] h-auto object-contain select-none"
-          />
-        </FadeIn>
-      </div>
-
       {/* Content Center Container */}
       <div className="relative z-10 flex flex-col items-center justify-center max-w-4xl text-center w-full">
         {/* Heading */}
@@ -66,25 +21,48 @@ export const AboutSection: React.FC = () => {
           </h2>
         </FadeIn>
 
-        {/* Gap between heading and text: gap-10 sm:gap-14 md:gap-16 */}
-        <div className="h-10 sm:h-14 md:h-16 w-full" />
+        {/* Gap between heading and text */}
+        <div className="h-8 sm:h-10 md:h-12 w-full" />
 
         {/* Animated Paragraph */}
-        <div className="max-w-[560px] w-full px-4 text-center">
+        <div className="max-w-[760px] w-full px-4 text-center">
           <AnimatedText
-            text="With more than five years of experience in design, i focus on branding, web design, and user experience, i truly enjoy working with businesses that aim to stand out and present their best image. Let's build something incredible together!"
-            className="text-[#D7E2EA] font-medium text-center leading-relaxed"
+            text="Dedicated and motivated undergraduate pursuing a BSc (Hons) in Computer Science at University of Westminster, with a strong passion for web development and software engineering. Possesses a solid foundation in programming languages including Java and Python, along with modern web technologies such as HTML, CSS, JavaScript, React.js, and Next.js. Demonstrates strong analytical thinking, problem solving abilities, and a commitment to continuous learning. Eager to apply academic knowledge and technical skills in practical, real-world environments while further developing expertise in full-stack and modern web application development."
+            className="text-[#D7E2EA] font-medium text-center text-base sm:text-lg md:text-xl leading-relaxed"
           />
         </div>
 
-        {/* Gap between text block and button: gap-16 sm:gap-20 md:gap-24 */}
-        <div className="h-16 sm:h-20 md:h-24 w-full" />
+        {/* Gap between text block and buttons */}
+        <div className="h-10 sm:h-12 md:h-14 w-full" />
 
-        {/* Contact button */}
+        {/* Action Buttons from uploaded reference */}
         <FadeIn delay={0.2} y={20} duration={0.6}>
-          <ContactButton />
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5">
+            {/* View Projects Button */}
+            <a
+              href="#projects"
+              className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 sm:px-8 sm:py-4 bg-[#F8BF15] hover:bg-[#E5AE0F] text-[#0C0C0C] font-semibold text-base sm:text-lg rounded-2xl shadow-lg hover:shadow-xl hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 cursor-pointer select-none"
+            >
+              <span>View Projects</span>
+              <ArrowDown className="w-5 h-5 transition-transform duration-200 group-hover:translate-y-0.5" strokeWidth={2.2} />
+            </a>
+
+            {/* Download CV Button */}
+            <a
+              href="/assets/cv.pdf"
+              download="Bine_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 sm:px-8 sm:py-4 bg-white hover:bg-neutral-100 text-[#0C0C0C] font-semibold text-base sm:text-lg rounded-2xl border border-neutral-200 shadow-lg hover:shadow-xl hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 cursor-pointer select-none"
+            >
+              <span>Download CV</span>
+              <Download className="w-5 h-5 transition-transform duration-200 group-hover:translate-y-0.5" strokeWidth={2.2} />
+            </a>
+          </div>
         </FadeIn>
       </div>
     </section>
   );
 };
+
+export default AboutSection;
