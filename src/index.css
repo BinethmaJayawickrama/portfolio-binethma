@@ -32,14 +32,14 @@
   outline-offset: -3px;
 }
 
-/* Hero portrait with magnet (Verbatim CSS) */
+/* Hero portrait with magnet (Verbatim CSS sizing, shifted down slightly) */
 .hero-portrait-wrap {
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
   width: 400px;
-  top: 50%;
+  top: calc(50% + 50px);
   touch-action: pan-y;
 }
 
