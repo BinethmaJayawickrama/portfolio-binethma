@@ -15,6 +15,7 @@
     color: #D7E2EA;
     overflow-x: clip;
     min-height: 100%;
+    scroll-behavior: smooth;
   }
 }
 
