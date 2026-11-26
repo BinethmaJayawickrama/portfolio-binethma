@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF4ECD" />
+      <stop offset="50%" stop-color="#8B5CF6" />
+      <stop offset="100%" stop-color="#F97316" />
+    </linearGradient>
+    <linearGradient id="bGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#D7E2EA" />
+    </linearGradient>
+  </defs>
+
+  <!-- Soft Dark Circle Base with Glowing Gradient Ring -->
+  <circle cx="32" cy="32" r="29" fill="#0C0C0C" stroke="url(#ringGrad)" stroke-width="3.5" />
+
+  <!-- Sleek Minimal 'B' -->
+  <text
+    x="28"
+    y="35"
+    dominant-baseline="middle"
+    text-anchor="middle"
+    fill="url(#bGrad)"
+    font-family="Kanit, system-ui, sans-serif"
+    font-weight="800"
+    font-size="34"
+  >
+    B
+  </text>
+
+  <!-- Charming 4-Point Sparkle Star Accent -->
+  <path
+    d="M47 15C47 19.5 49.5 22 54 22C49.5 22 47 24.5 47 29C47 24.5 44.5 22 40 22C44.5 22 47 19.5 47 15Z"
+    fill="url(#ringGrad)"
+  />
+</svg>
