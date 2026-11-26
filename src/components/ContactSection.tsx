@@ -113,22 +113,17 @@ export const ContactSection: React.FC = () => {
 
       const result = await response.json();
 
-      if (
-        response.ok &&
-        (result.success === 'true' ||
-          result.success === true ||
-          (typeof result.message === 'string' &&
-            result.message.toLowerCase().includes('activation')))
-      ) {
+      if (response.ok && (result.success === 'true' || result.success === true)) {
         setIsSubmitted(true);
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
-        setErrorMessage(
-          result.message || 'Unable to send message right now. Please try again.'
-        );
+        // Fallback to native HTML form POST in a hidden iframe (triggers first-time activation email reliably)
+        submitViaHiddenForm();
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', subject: '', message: '' });
       }
     } catch {
-      // Only use hidden form fallback if fetch itself failed due to network/CORS
+      // Fallback to native HTML form POST in a hidden iframe
       submitViaHiddenForm();
       setIsSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
