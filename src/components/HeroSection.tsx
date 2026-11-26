@@ -5,10 +5,10 @@ import { FadeIn } from './FadeIn';
 
 export const HeroSection: React.FC = () => {
   return (
-    <section className="relative h-screen w-full flex flex-col justify-between overflow-hidden select-none bg-[#0C0C0C]">
+    <section className="hero-section select-none">
       {/* 1. Navbar */}
       <FadeIn delay={0} y={-20} duration={0.6}>
-        <nav className="w-full flex items-center justify-between px-6 md:px-10 pt-6 md:pt-8 text-[#D7E2EA] font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.4rem] z-20 relative">
+        <nav className="hero-nav text-[#D7E2EA] font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.4rem]">
           <a
             href="#about"
             className="hover:opacity-70 transition-opacity duration-200"
@@ -36,23 +36,25 @@ export const HeroSection: React.FC = () => {
         </nav>
       </FadeIn>
 
-      {/* 2. Hero Heading */}
-      <div className="w-full overflow-hidden text-center z-0 flex justify-center items-center">
-        <FadeIn delay={0.15} y={40} duration={0.8} className="w-full">
-          <h1 className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-[14vw] sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw] mt-6 sm:mt-4 md:-mt-5 select-none">
-            Hi, i&apos;m bine
-          </h1>
-        </FadeIn>
-      </div>
+      {/* 2 & 3. Center Group on Mobile/Tablet (Heading right above Portrait), Top Heading on Desktop */}
+      <div className="hero-center-group">
+        {/* 2. Hero Heading */}
+        <div className="hero-heading-wrap">
+          <FadeIn delay={0.15} y={40} duration={0.8} className="w-full">
+            <h1 className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-[14vw] sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw] select-none">
+              Hi, i&apos;m bine
+            </h1>
+          </FadeIn>
+        </div>
 
-      {/* 3. Hero Portrait: The Living Portrait (Centered both ways) */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-        className="pointer-events-auto"
-      >
-        <div className="hero-portrait-wrap" id="magnetWrap">
+        {/* 3. Hero Portrait: The Living Portrait */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          className="hero-portrait-motion"
+        >
+          <div className="hero-portrait-wrap" id="magnetWrap">
           <div
             className="hero-portrait-inner fade-in"
             id="magnetInner"
@@ -91,12 +93,13 @@ export const HeroSection: React.FC = () => {
                 />
               </svg>
             </div>
+            </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
 
       {/* 4. Bottom Bar */}
-      <div className="w-full flex justify-between items-end pb-7 sm:pb-8 md:pb-10 px-6 md:px-10 z-20 relative">
+      <div className="hero-bottom-bar">
         <FadeIn delay={0.35} y={20} duration={0.7}>
           <p
             className="text-[#D7E2EA] font-light uppercase tracking-wide leading-snug max-w-[160px] sm:max-w-[220px] md:max-w-[260px]"

@@ -119,6 +119,17 @@
         }
       }
 
+      // Pin the bottom edge (v near 1.0) where shoulders/hair meet the image border so it never lifts into a black triangle notch
+      const edgePin = new Float32Array(count);
+      for (let k = 0; k < count; k++) {
+        const rv = restY[k];
+        if (rv >= 0.95) edgePin[k] = 0;
+        else if (rv > 0.84) {
+          const t = (0.95 - rv) / 0.11;
+          edgePin[k] = t * t * (3 - 2 * t);
+        } else edgePin[k] = 1;
+      }
+
       const H = 1 / 240; let simLeft = 0;
       function step(dt) {
         const c2 = C * C, wo2 = WOBBLE * WOBBLE;
@@ -130,16 +141,22 @@
           vy[k] += (c2 * ly - wo2 * uy[k] - GAMMA * vy[k] + NU * lvy) * dt;
         }
         if (brush) for (const [k, w, u0, v0] of brush.list) {
-          const K = 3000 * w, D = 90 * w;
-          vx[k] += ((u0 + brush.px * w - ux[k]) * K - vx[k] * D) * dt;
-          vy[k] += ((v0 + brush.py * w - uy[k]) * K - vy[k] * D) * dt;
+          const pw = w * edgePin[k];
+          const K = 3000 * pw, D = 90 * pw;
+          vx[k] += ((u0 + brush.px * pw - ux[k]) * K - vx[k] * D) * dt;
+          vy[k] += ((v0 + brush.py * pw - uy[k]) * K - vy[k] * D) * dt;
         }
-        for (let k = 0; k < count; k++) { ux[k] += vx[k] * dt; uy[k] += vy[k] * dt; }
+        for (let k = 0; k < count; k++) {
+          const p = edgePin[k];
+          vx[k] *= p; vy[k] *= p;
+          ux[k] = (ux[k] + vx[k] * dt) * p;
+          uy[k] = (uy[k] + vy[k] * dt) * p;
+        }
       }
       // a shove from nowhere: sneezes, jolts, a fly landing
       function poke(u, v, dx, dy, radius = .09) {
         for (let k = 0; k < count; k++) {
-          const ax = rest[k * 2] - u, ay = rest[k * 2 + 1] - v, w = Math.exp(-(ax * ax + ay * ay) / (radius * radius));
+          const ax = rest[k * 2] - u, ay = rest[k * 2 + 1] - v, w = Math.exp(-(ax * ax + ay * ay) / (radius * radius)) * edgePin[k];
           vx[k] += dx * w; vy[k] += dy * w;
         }
       }
