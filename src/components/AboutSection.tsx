@@ -1,7 +1,7 @@
 import React from 'react';
 import { FadeIn } from './FadeIn';
 import { AnimatedText } from './AnimatedText';
-import { ArrowDown, Download } from 'lucide-react';
+import { Download } from 'lucide-react';
 
 export const AboutSection: React.FC = () => {
   const handleDownloadCV = async (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -60,10 +60,9 @@ export const AboutSection: React.FC = () => {
             {/* View Projects Button - Signature Magenta/Purple Gradient */}
             <a
               href="#projects"
-              className="group contact-button-style inline-flex items-center justify-center gap-2.5 px-8 py-3.5 sm:px-9 sm:py-4 text-white font-semibold text-base sm:text-lg rounded-2xl hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer select-none"
+              className="group contact-button-style inline-flex items-center justify-center px-8 py-3.5 sm:px-9 sm:py-4 text-white font-semibold text-base sm:text-lg rounded-2xl hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer select-none"
             >
               <span>View Projects</span>
-              <ArrowDown className="w-5 h-5 transition-transform duration-200 group-hover:translate-y-0.5" strokeWidth={2.2} />
             </a>
 
             {/* Download CV Button - Obsidian & Chrome Silver Border */}

@@ -36,25 +36,23 @@ export const HeroSection: React.FC = () => {
         </nav>
       </FadeIn>
 
-      {/* 2 & 3. Center Group on Mobile/Tablet (Heading right above Portrait), Top Heading on Desktop */}
-      <div className="hero-center-group">
-        {/* 2. Hero Heading */}
-        <div className="hero-heading-wrap">
-          <FadeIn delay={0.15} y={40} duration={0.8} className="w-full">
-            <h1 className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-[14vw] sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw] select-none">
-              Hi, i&apos;m bine
-            </h1>
-          </FadeIn>
-        </div>
+      {/* 2. Hero Heading */}
+      <div className="hero-heading-wrap">
+        <FadeIn delay={0.15} y={40} duration={0.8} className="w-full">
+          <h1 className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-[14vw] sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw] md:-mt-5 select-none">
+            Hi, i&apos;m bine
+          </h1>
+        </FadeIn>
+      </div>
 
-        {/* 3. Hero Portrait: The Living Portrait */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          className="hero-portrait-motion"
-        >
-          <div className="hero-portrait-wrap" id="magnetWrap">
+      {/* 3. Hero Portrait: The Living Portrait */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+        className="hero-portrait-motion"
+      >
+        <div className="hero-portrait-wrap" id="magnetWrap">
           <div
             className="hero-portrait-inner fade-in"
             id="magnetInner"
@@ -93,12 +91,11 @@ export const HeroSection: React.FC = () => {
                 />
               </svg>
             </div>
-            </div>
           </div>
-        </motion.div>
-      </div>
+        </div>
+      </motion.div>
 
-      {/* 4. Bottom Bar */}
+      {/* 4. Bottom Bar (Visible on Desktop as before, hidden on Mobile) */}
       <div className="hero-bottom-bar">
         <FadeIn delay={0.35} y={20} duration={0.7}>
           <p
