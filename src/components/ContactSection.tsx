@@ -18,8 +18,9 @@ export const ContactSection: React.FC = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const contactEmail = 'binethma.jayawickrama@gmail.com';
+  const contactEmail = 'binethmad@gmail.com';
   const contactPhone = '+94701131651';
 
   const handleChange = (
@@ -27,21 +28,113 @@ export const ContactSection: React.FC = () => {
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errorMessage) setErrorMessage(null);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const submitViaHiddenForm = () => {
+    const iframeName = 'formsubmit_hidden_iframe';
+    let iframe = document.getElementById(iframeName) as HTMLIFrameElement | null;
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.id = iframeName;
+      iframe.name = iframeName;
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+    }
+
+    const tempForm = document.createElement('form');
+    tempForm.method = 'POST';
+    tempForm.action = `https://formsubmit.co/${contactEmail}`;
+    tempForm.target = iframeName;
+    tempForm.style.display = 'none';
+
+    const fields: Record<string, string> = {
+      name: formData.name,
+      email: formData.email,
+      _replyto: formData.email,
+      _subject: formData.subject.trim()
+        ? `Portfolio Inquiry: ${formData.subject}`
+        : `New Portfolio Message from ${formData.name}`,
+      subject: formData.subject || 'General Inquiry',
+      message: formData.message,
+      _template: 'table',
+      _captcha: 'false',
+    };
+
+    Object.entries(fields).forEach(([key, val]) => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = val;
+      tempForm.appendChild(input);
+    });
+
+    document.body.appendChild(tempForm);
+    tempForm.submit();
+    setTimeout(() => {
+      if (document.body.contains(tempForm)) {
+        document.body.removeChild(tempForm);
+      }
+    }, 2000);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
       return;
     }
 
     setIsSubmitting(true);
+    setErrorMessage(null);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const payload = new FormData();
+      payload.append('name', formData.name);
+      payload.append('email', formData.email);
+      payload.append('_replyto', formData.email);
+      payload.append(
+        '_subject',
+        formData.subject.trim()
+          ? `Portfolio Inquiry: ${formData.subject}`
+          : `New Portfolio Message from ${formData.name}`
+      );
+      payload.append('subject', formData.subject || 'General Inquiry');
+      payload.append('message', formData.message);
+      payload.append('_template', 'table');
+      payload.append('_captcha', 'false');
+
+      const response = await fetch(`https://formsubmit.co/ajax/${contactEmail}`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+        },
+        body: payload,
+      });
+
+      const result = await response.json();
+
+      if (
+        response.ok &&
+        (result.success === 'true' ||
+          result.success === true ||
+          (typeof result.message === 'string' &&
+            result.message.toLowerCase().includes('activation')))
+      ) {
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setErrorMessage(
+          result.message || 'Unable to send message right now. Please try again.'
+        );
+      }
+    } catch {
+      // Only use hidden form fallback if fetch itself failed due to network/CORS
+      submitViaHiddenForm();
       setIsSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 900);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -172,6 +265,12 @@ export const ContactSection: React.FC = () => {
                     className="w-full px-4 py-3.5 rounded-2xl bg-[#1A1A1A] border border-[#D7E2EA]/20 focus:border-[#D7E2EA] focus:bg-[#202020] text-[#D7E2EA] placeholder-[#D7E2EA]/30 text-sm sm:text-base outline-none transition-all duration-200 resize-none"
                   />
                 </div>
+
+                {errorMessage && (
+                  <p className="text-xs sm:text-sm text-[#D7E2EA] bg-white/[0.06] border border-white/15 rounded-xl py-2.5 px-4 text-center">
+                    {errorMessage}
+                  </p>
+                )}
 
                 {/* Submit Button Centered */}
                 <div className="pt-2 flex justify-center">
