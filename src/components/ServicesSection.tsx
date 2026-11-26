@@ -3,68 +3,52 @@ import { FadeIn } from './FadeIn';
 import { TechIcon } from './TechIcon';
 
 interface TechCategory {
-  number: string;
   name: string;
   skills: string[];
-  description: string;
 }
 
 const TECHNOLOGIES: TechCategory[] = [
   {
-    number: '01',
     name: 'Programming Languages',
     skills: ['Python', 'Java', 'JavaScript'],
-    description:
-      'Core programming paradigms, object-oriented design, algorithm optimization, and software development in Python, Java, and JavaScript.',
   },
   {
-    number: '02',
     name: 'Frontend Development',
     skills: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Next.js', 'Responsive Web Design'],
-    description:
-      'Building responsive, interactive, and high-performance web applications using modern component architectures, React.js, and Next.js.',
   },
   {
-    number: '03',
     name: 'Mobile Application Development',
     skills: ['Flutter'],
-    description:
-      'Cross-platform mobile application engineering with Flutter, delivering smooth reactive user interfaces and native performance.',
   },
   {
-    number: '04',
     name: 'Computer Vision & Image Processing',
     skills: ['OpenCV'],
-    description:
-      'Image processing, feature detection, object recognition, and visual analytics workflows implemented with OpenCV.',
   },
   {
-    number: '05',
     name: 'Database Management',
     skills: ['MySQL', 'SQL'],
-    description:
-      'Relational database architecture, data modeling, schema design, normalization, and efficient SQL query optimization.',
   },
   {
-    number: '06',
     name: 'Networking',
     skills: ['Network Fundamentals'],
-    description:
-      'Understanding of IP addressing, subnetting, basic network configuration, and core data communication fundamentals.',
   },
   {
-    number: '07',
     name: 'UI/UX & Design Tools',
     skills: ['Figma', 'Wireframing', 'UI Design', 'Prototyping'],
-    description:
-      'User-centered interface design, comprehensive wireframing, component-based design systems, and interactive prototypes in Figma.',
   },
   {
-    number: '08',
+    name: 'Software Testing & QA',
+    skills: [
+      'Postman',
+      'API Testing',
+      'Unit Testing',
+      'Functional Testing',
+      'Boundary & Negative Testing',
+    ],
+  },
+  {
     name: 'Development Tools & Platforms',
     skills: ['Git', 'GitHub', 'Vercel', 'Version Control', 'Web App Deployment'],
-    description:
-      'Collaborative version control, CI/CD pipelines, and seamless cloud deployments using Git, GitHub, and Vercel.',
   },
 ];
 
@@ -89,32 +73,24 @@ export const ServicesSection: React.FC = () => {
         <div className="w-full flex flex-col border-t border-[rgba(12,12,12,0.15)]">
           {TECHNOLOGIES.map((item, index) => (
             <FadeIn
-              key={item.number}
+              key={item.name}
               delay={index * 0.08}
               y={30}
               duration={0.65}
               className="w-full"
             >
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between py-8 sm:py-10 md:py-12 border-b border-[rgba(12,12,12,0.15)] gap-4 sm:gap-8 md:gap-14 group transition-colors duration-200">
-                {/* Left: Number */}
-                <span
-                  className="font-black text-[#0C0C0C] leading-none shrink-0 opacity-80 group-hover:opacity-100 transition-opacity duration-200"
-                  style={{ fontSize: 'clamp(2.5rem, 8vw, 120px)' }}
-                >
-                  {item.number}
-                </span>
-
-                {/* Right: Name + Skills Badges + Description */}
-                <div className="flex flex-col flex-1 gap-2.5 sm:gap-3">
+              <div className="flex flex-col items-center justify-center text-center py-8 sm:py-10 md:py-12 border-b border-[rgba(12,12,12,0.15)] gap-3 sm:gap-4 group transition-colors duration-200">
+                {/* Name + Skills Badges */}
+                <div className="flex flex-col items-center text-center gap-2.5 sm:gap-3">
                   <h3
-                    className="font-semibold uppercase text-[#0C0C0C] leading-tight"
+                    className="font-semibold uppercase text-[#0C0C0C] leading-tight text-center"
                     style={{ fontSize: 'clamp(1.15rem, 2.4vw, 2.2rem)' }}
                   >
                     {item.name}
                   </h3>
 
                   {/* Skills: Large prominent icons only */}
-                  <div className="flex flex-wrap items-center gap-3 sm:gap-4 my-2.5">
+                  <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-1">
                     {item.skills.map((skill) => (
                       <div
                         key={skill}
@@ -132,14 +108,6 @@ export const ServicesSection: React.FC = () => {
                       </div>
                     ))}
                   </div>
-
-                  {/* Description */}
-                  <p
-                    className="font-normal text-[#0C0C0C] leading-relaxed max-w-2xl opacity-70"
-                    style={{ fontSize: 'clamp(0.85rem, 1.5vw, 1.15rem)' }}
-                  >
-                    {item.description}
-                  </p>
                 </div>
               </div>
             </FadeIn>

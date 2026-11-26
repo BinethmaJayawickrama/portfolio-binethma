@@ -310,6 +310,79 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = 'w-5 h-5' 
     );
   }
 
+  // Postman
+  if (norm.includes('postman')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="10" fill="#FF6C37" />
+        <path
+          d="M15.8 8.2L9.2 14.8M15.8 8.2l-4.5 1.3 3.2 3.2 1.3-4.5z"
+          stroke="#FFFFFF"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <circle cx="9" cy="15" r="1.6" fill="#FFFFFF" />
+      </svg>
+    );
+  }
+
+  // API Testing
+  if (norm.includes('api testing')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" strokeWidth="1.8">
+        <path d="M4 7h11M4 12h7M4 17h7" strokeLinecap="round" />
+        <circle cx="17.5" cy="14.5" r="4.5" stroke="#10B981" strokeWidth="1.8" />
+        <path d="M15.8 14.5l1.2 1.2 2.4-2.4" stroke="#10B981" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  // Unit Testing
+  if (norm.includes('unit testing')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none" strokeWidth="1.8">
+        <path
+          d="M9 3h6m-5 0v5.5L5.5 17A2 2 0 0 0 7.2 20h9.6a2 2 0 0 0 1.7-3L14 8.5V3"
+          stroke="#22C55E"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path d="M7.5 14.5h9" stroke="#22C55E" strokeLinecap="round" />
+        <circle cx="10.5" cy="17" r="1" fill="#22C55E" />
+        <circle cx="14" cy="16.5" r="0.8" fill="#22C55E" />
+      </svg>
+    );
+  }
+
+  // Functional Testing
+  if (norm.includes('functional testing')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" strokeWidth="1.8">
+        <rect x="4" y="3" width="16" height="18" rx="2.5" />
+        <path d="M8 9l1.5 1.5L12.5 8" stroke="#10B981" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M14.5 9.5H17" strokeLinecap="round" />
+        <path d="M8 14.5l1.5 1.5 3-2.5" stroke="#10B981" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M14.5 15H17" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  // Boundary & Negative Testing
+  if (norm.includes('boundary') || norm.includes('negative')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="#F59E0B" strokeWidth="1.8">
+        <path
+          d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7l8-4z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path d="M12 8v4.5" stroke="#EF4444" strokeWidth="2" strokeLinecap="round" />
+        <circle cx="12" cy="15.8" r="1" fill="#EF4444" stroke="none" />
+      </svg>
+    );
+  }
+
   // Fallback generic code icon
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">

@@ -78,15 +78,25 @@ const PROJECTS: ProjectData[] = [
   },
   {
     number: '06',
-    name: 'WordSearch App',
-    subtitle: 'Interactive Mobile Puzzle Game',
-    category: 'Mobile Application',
+    name: 'Smart Campus API',
+    subtitle: 'Smart Campus Sensor & Room Management API',
+    category: 'RESTful API & QA Testing',
     year: '2026',
-    link: 'https://github.com/BinethmaJayawickrama/word_search_app',
+    link: 'https://github.com/BinethmaJayawickrama/smart-campus-API',
     description:
-      'Developed a multi-level puzzle game with a dynamic grid generator for infinite replayability. Implemented smooth touch-drag selection logic, a tiered difficulty system (Easy to Hard), and real-time timers with star-based scoring.',
-    techStack: ['Flutter', 'Dart', 'Material 3', 'Android SDK', 'Git'],
-    image: '/assets/project_wordsearch.jpg',
+      'Developed and deployed a RESTful Smart Campus Management API using Java and JAX-RS (Jersey) with the DAO pattern and global exception handling to manage campus rooms, IoT sensors, and sensor readings. Designed and executed functional, unit, non-functional, and negative/boundary test cases using Postman to validate endpoints, CRUD operations, HTTP status codes, and JSON payload consistency.',
+    techStack: [
+      'Java 8',
+      'Java EE',
+      'JAX-RS (Jersey)',
+      'Jackson',
+      'Apache Tomcat',
+      'Maven',
+      'RESTful APIs',
+      'Postman',
+      'Git',
+    ],
+    image: '/assets/project_smartcampus.jpg',
   },
 ];
 
