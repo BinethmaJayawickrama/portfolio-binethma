@@ -4,6 +4,25 @@ import { AnimatedText } from './AnimatedText';
 import { ArrowDown, Download } from 'lucide-react';
 
 export const AboutSection: React.FC = () => {
+  const handleDownloadCV = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/assets/cv.pdf');
+      if (!response.ok) throw new Error('Failed to fetch CV');
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'Binethma_Jayawickrama_CV.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch {
+      window.open('/assets/cv.pdf', '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <section
       id="about"
@@ -50,9 +69,8 @@ export const AboutSection: React.FC = () => {
             {/* Download CV Button - Obsidian & Chrome Silver Border */}
             <a
               href="/assets/cv.pdf"
-              download="Bine_CV.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+              download="Binethma_Jayawickrama_CV.pdf"
+              onClick={handleDownloadCV}
               className="group inline-flex items-center justify-center gap-2.5 px-8 py-3.5 sm:px-9 sm:py-4 bg-[#141414]/90 hover:bg-[#1F1F1F] text-[#D7E2EA] hover:text-white font-semibold text-base sm:text-lg rounded-2xl border-2 border-[#D7E2EA] hover:border-white shadow-[0_4px_16px_rgba(0,0,0,0.5)] hover:shadow-[0_4px_20px_rgba(215,226,234,0.15)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer select-none backdrop-blur-sm"
             >
               <span>Download CV</span>

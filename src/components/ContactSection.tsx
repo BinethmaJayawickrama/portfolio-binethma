@@ -20,7 +20,7 @@ export const ContactSection: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const contactEmail = 'binethma.jayawickrama@gmail.com';
-  const contactPhone = '+94 77 123 4567';
+  const contactPhone = '+94701131651';
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
